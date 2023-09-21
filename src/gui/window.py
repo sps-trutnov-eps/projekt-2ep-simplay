@@ -3,10 +3,14 @@ from PyQt5.QtGui import *
 from PyQt5.QtPrintSupport import *
 
 from Custom_Widgets.Widgets import *
-from gui.ui_interface import *
 from PySide2 import *
 
-from gui.qss import *
+sys.path.append("gui")
+from gui.ui_interface import *
+# from gui.qss import *
+
+
+
 
 
 
