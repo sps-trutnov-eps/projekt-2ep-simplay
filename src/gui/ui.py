@@ -9,4 +9,4 @@ class Ui_MainWindow(QMainWindow):
 
     def setupUi(self, MainWindow):
         # TODO Here paste the design
-        pass
+        print("Setup ui...")
