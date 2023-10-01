@@ -18,8 +18,7 @@ class Ui_MainWindow(QMainWindow):
         # TODO Here paste the design
         dialog = AddCategoryDialog()
         print("Setup ui...")
-
-        dialog = AddCategoryDialog()
+        
         if not MainWindow.objectName():
                         MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
