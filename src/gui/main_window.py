@@ -7,5 +7,4 @@ class MainWindow(Ui_MainWindow):
         super(MainWindow, self).__init__()
 
         self.setMinimumSize(600, 400)
-        self.setupUi(self)
         self.show()
