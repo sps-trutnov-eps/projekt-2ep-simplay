@@ -1,8 +1,7 @@
-
 "QCustomSlideMenu": [{
-    "name": "menu_widget",
+    "name": "side_menu",
     "defaultSize": [{
-        "width": 250,
+        "width": 150,
         "height": "auto"
     }],
     "collapsedSize": [{
@@ -10,56 +9,18 @@
         "height": 0
     }],
     "expandedSize": [{
-        "width": 200,
+        "width": 150,
         "height": "auto"
     }],
     "toggleButton": [{
-        "buttonName": "open_close_side_bar_btn",
+        "buttonName": "menuBtn",
         "icons": [{
             "whenMenuIsCollapsed": ":/icons/icons/align-left.svg",
             "whenMenuIsExpanded": ":/icons/icons/chevron-left.svg"
         }],
-        "style": [{
-            "whenMenuIsCollapsed": [
-                "border: 2px solid transparent"
-            ],
-            "whenMenuIsExpanded": [
-                "border: 2px solid rgb(9, 5, 13)"
-            ]
-        }]
-    }],
     "menuTransitionAnimation": [{
-        "animationDuration": 2000,
-        "animationEasingCurve": "Linear",
-        "whenCollapsing": [{
-            "animationDuration": 500,
-            "animationEasingCurve": "Linear"
+        "animationDuration": 1000,
+        "animationEasingCurve": "OutBack",
         }],
-        "whenExpanding": [{
-            "animationDuration": 500,
-            "animationEasingCurve": "OutInBack"
-        }]
     }],
-    "menuContainerStyle": [{
-        "whenMenuIsCollapsed": [
-            "border: 2px solid transparent"
-        ],
-        "whenMenuIsExpanded": [
-            "border: 2px solid rgb(9, 5, 13); background-color: rgb(9, 5, 13)"
-        ]
-    }],
-    "floatPosition": [
-        {
-            "relativeTo": "centralwidget",
-            "position": "center-right",
-            "shadow":[
-                {
-                    "color": "#000",
-                    "blurRadius": 20,
-                    "xOffset": 0,
-                    "yOffset": 0
-                }
-            ]
-        }
-    ]
 }]
