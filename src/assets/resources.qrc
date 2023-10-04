@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/chevron-down.svg</file>
+    <file>icons/maximize-2.svg</file>
+    <file>icons/minimize-2.svg</file>
+    <file>icons/x.svg</file>
+  </qresource>
+</RCC>
