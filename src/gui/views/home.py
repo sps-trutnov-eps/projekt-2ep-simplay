@@ -13,12 +13,13 @@ class HomeView(QWidget):
         
     def setupUi(self, MainWindow):        
         if not MainWindow.objectName():
-                        MainWindow.setObjectName(u"MainWindow")
+            MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
-        self.setObjectName(u"centralwidget")
-        self.verticalLayout = QVBoxLayout(self)
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.header = QFrame(self)
+        self.header = QFrame(self.centralwidget)
         self.header.setObjectName(u"header")
         self.header.setMinimumSize(QSize(0, 50))
         self.header.setMaximumSize(QSize(16777215, 50))
@@ -34,13 +35,12 @@ class HomeView(QWidget):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.frame)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 30))
-        self.pushButton.setMaximumSize(QSize(16777215, 30))
+        self.menuBtn = QPushButton(self.frame)
+        self.menuBtn.setObjectName(u"menuBtn")
+        self.menuBtn.setMinimumSize(QSize(0, 30))
+        self.menuBtn.setMaximumSize(QSize(16777215, 30))
 
-        self.horizontalLayout_3.addWidget(self.pushButton)
-
+        self.horizontalLayout_3.addWidget(self.menuBtn)
 
         self.horizontalLayout_2.addWidget(self.frame, 0, Qt.AlignLeft)
 
@@ -48,20 +48,22 @@ class HomeView(QWidget):
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_4 = QHBoxLayout(self.frame_3)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label = QLabel(self.frame_3)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(130, 0, 47, 13))
         font = QFont()
         font.setPointSize(10)
         self.label.setFont(font)
         self.label.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_2.addWidget(self.frame_3)
+        self.horizontalLayout_4.addWidget(self.label)
 
+        self.horizontalLayout_2.addWidget(self.frame_3)
 
         self.verticalLayout.addWidget(self.header, 0, Qt.AlignTop)
 
-        self.frame_2 = QFrame(self)
+        self.frame_2 = QFrame(self.centralwidget)
         self.frame_2.setObjectName(u"frame_2")
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -105,9 +107,7 @@ class HomeView(QWidget):
 
         self.verticalLayout_3.addWidget(self.pushButton_3)
 
-
         self.verticalLayout_2.addWidget(self.frame_4, 0, Qt.AlignLeft|Qt.AlignTop)
-
 
         self.horizontalLayout.addWidget(self.side_menu)
 
@@ -115,16 +115,18 @@ class HomeView(QWidget):
         self.main_body.setObjectName(u"main_body")
         self.main_body.setFrameShape(QFrame.StyledPanel)
         self.main_body.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_5 = QHBoxLayout(self.main_body)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_2 = QLabel(self.main_body)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(170, 200, 47, 31))
+
+        self.horizontalLayout_5.addWidget(self.label_2)
 
         self.horizontalLayout.addWidget(self.main_body)
 
-
         self.verticalLayout.addWidget(self.frame_2)
 
-        MainWindow.setCentralWidget(self)
+        MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
@@ -133,7 +135,7 @@ class HomeView(QWidget):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"MENU", None))
+        self.menuBtn.setText(QCoreApplication.translate("MainWindow", u"MENU", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Simplay", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Account", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Time", None))
