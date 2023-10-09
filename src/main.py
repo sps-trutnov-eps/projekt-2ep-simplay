@@ -1,8 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication
+from Custom_Widgets import *
 
 from gui.main_window import MainWindow
-from Custom_Widgets.Widgets import *
+
 
 app = QApplication(sys.argv)
 app.setApplicationName("Simplay")
