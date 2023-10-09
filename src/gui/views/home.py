@@ -1,16 +1,9 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from qtpy.QtWidgets import *
+from qtpy.QtCore import *
+from qtpy.QtGui import *
 
 
-class HomeView(QWidget):
-
-    def __init__(self, parent = None):
-        super(HomeView, self).__init__()
-
-        self.setupUi(parent)
-
-        
+class HomeView(object):        
     def setupUi(self, MainWindow):        
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
