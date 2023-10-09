@@ -1,10 +1,16 @@
+from Custom_Widgets import *
+
 from gui.ui import Ui_MainWindow
 
 
-class MainWindow(Ui_MainWindow):
+class MainWindow(QMainWindow):
     
     def __init__(self) -> None:
-        super(MainWindow, self).__init__()
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainWindow(self)
 
-        self.setMinimumSize(600, 400)
+        loadJsonStyle(self, self.ui, jsonFiles = {
+            "gui/style.json"
+        })
+
         self.show()

@@ -1,17 +1,20 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-
-from gui.views import *
 from Custom_Widgets.Widgets import *
 
-class Ui_MainWindow(QMainWindow):
+from gui.views import *
 
-    def __init__(self) -> None:
-        super(Ui_MainWindow, self).__init__()
-        self.setupHomeView()
+
+class Ui_MainWindow(object):
+
+    def __init__(self, MainWindow) -> None:
+        self.MainWindow = MainWindow
+
+        self.setupAddCategoryView()
 
         
-    def setupHomeView(self):
-        self.HomeView = HomeView(self)
-        loadJsonStyle(self, self.HomeView)
-        self.show()
+    def setupHomeView(self) -> None:
+        self.HomeView = HomeView()
+        self.HomeView.setupUi(self.MainWindow)
+
+    def setupAddCategoryView(self) -> None: 
+        self.AddCategoryView = AddCategoryView()
+        self.AddCategoryView.setupUi(self.MainWindow)
