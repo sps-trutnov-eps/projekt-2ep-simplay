@@ -7,16 +7,17 @@ from gui.qss import *
 
 class NavigationBar(QWidget):
 
-    def __init__(self, parent_layout):
+    def __init__(self, MainWindow, parent_layout):
         super(NavigationBar, self).__init__()
         self.parent_layout = parent_layout
+        self.MainWindow = MainWindow
 
 
         self.verticalLayout = QVBoxLayout(self)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.navigationWidget = QWidget(self)
         self.navigationWidget.setObjectName(u"navigationWidget")
-        self.navigationWidget.setMinimumSize(QSize(0, 50))
+        self.navigationWidget.setMinimumSize(QSize(0, 30))
         self.navigationWidget.setStyleSheet(u"background-color: #28262C; margin: 0")
         self.horizontalLayout = QHBoxLayout(self.navigationWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -80,6 +81,23 @@ class NavigationBar(QWidget):
 
     def retranslateUi(self):
         self.title.setText(QCoreApplication.translate("Dialog", u"Simplay", None))
-        self.minimizeButton.setText("")
-        self.restoreButton.setText("")
+        self.minimizeButton.clicked.connect(lambda: self.MainWindow.showMinimized())
+        self.restoreButton.clicked.connect(lambda: self.restore_or_maximize_window())
+        self.closeButton.clicked.connect(lambda: self.MainWindow.close())
     # retranslateUi
+
+    def updateRestoreButtonIcon(self):
+        if self.MainWindow.isMaximized():
+            self.restoreButton.setIcon(QIcon("assets/icons/minimize-2.svg"))
+        else:
+            self.restoreButton.setIcon(QIcon("assets/icons/maximize-2.svg"))
+
+    def restore_or_maximize_window(self):
+        # If window is maxmized
+        if self.MainWindow.isMaximized():
+            self.MainWindow.showNormal()
+
+        else:
+            self.MainWindow.showMaximized()
+
+        self.updateRestoreButtonIcon()

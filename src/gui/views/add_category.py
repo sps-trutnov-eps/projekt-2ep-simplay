@@ -19,7 +19,7 @@ class AddCategoryView(QWidget):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
 
-        self.navigationBar = NavigationBar(self.verticalLayout)
+        self.navigationBar = NavigationBar(MainWindow, self.verticalLayout)
 
         self.pageTitle = QLabel(self.centralwidget)
         self.pageTitle.setObjectName(u"pageTitle")

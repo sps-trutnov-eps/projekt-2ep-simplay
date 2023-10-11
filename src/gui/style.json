@@ -1,32 +1,17 @@
 {
 	"QMainWindow":[
 		{
-			"tittle":"My New Tittle",
+			"tittle":"Simplay",
 			"frameless": true,
 			"transluscentBg": true,
 			"sizeGrip": "size_grip",
 			"shadow":[
 				{
-					"color": "#fff",
+					"color": "#0000",
 					"blurRadius": 20,
 					"xOffset": 5,
 					"yOffset": 5,
 					"centralWidget": "centralwidget"
-				}
-			],
-			"navigation":[
-				{
-					"minimize":"minimizeButton",
-					"close": "closeButton",
-					"restore":[
-						{	
-							"buttonName": "restoreButton",
-							"normalIcon": "assets/icons/maximize-2.svg",
-							"maximizedIcon": "assets/icons/minimize-2.svg"
-						}
-					],
-					"moveWindow": "navigationWidget",
-					"tittleBar": "navigationWidget"
 				}
 			]
 		}
