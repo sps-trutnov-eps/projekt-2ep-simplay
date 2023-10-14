@@ -1,5 +1,5 @@
 from gui.views.add_category import AddCategoryView
-from gui.views.home import HomeView
+from gui.views.category_window import HomeView
 
 __ALL__ = [
     "AddCategoryView",
