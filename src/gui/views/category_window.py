@@ -6,7 +6,7 @@ from qtpy.QtGui import *
 class HomeView(object):        
     def setupUi(self, MainWindow):        
         if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
+            MainWindow.setObjectName(u"CategoryWindow")
         MainWindow.resize(800, 600)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -127,9 +127,9 @@ class HomeView(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.menuBtn.setText(QCoreApplication.translate("MainWindow", u"MENU", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Simplay", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Account", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Time", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"To be added", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("CategoryWindow", u"CategoryWindow", None))
+        self.menuBtn.setText(QCoreApplication.translate("CategoryWindow", u"MENU", None))
+        self.label.setText(QCoreApplication.translate("CategoryWindow", u"Simplay", None))
+        self.pushButton_2.setText(QCoreApplication.translate("CategoryWindow", u"Account", None))
+        self.pushButton_3.setText(QCoreApplication.translate("CategoryWindow", u"Time", None))
+        self.label_2.setText(QCoreApplication.translate("CategoryWindow", u"To be added", None))

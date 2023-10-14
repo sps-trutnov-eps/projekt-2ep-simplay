@@ -1,0 +1,9 @@
+from qtpy.QtWidgets import *
+from qtpy.QtCore import *
+from qtpy.QtGui import *
+
+
+class HomeView(object):        
+    def setupUi(self, MainWindow):        
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"HomeWindow")
