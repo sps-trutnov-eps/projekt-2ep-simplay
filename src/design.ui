@@ -231,7 +231,10 @@
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border: 1px solid #C03E35; border-radius: 5;</string>
+             <string notr="true">border: 1px solid #C03E35; border-radius: 5; color: #F5F5F5; padding: 5;</string>
+            </property>
+            <property name="text">
+             <string/>
             </property>
             <property name="maxLength">
              <number>64</number>
