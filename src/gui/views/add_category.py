@@ -5,7 +5,7 @@ from qtpy.QtGui import *
 from gui.components import NavigationBar
 
 
-class AddCategoryView(QWidget):
+class AddCategoryView(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -60,7 +60,7 @@ class AddCategoryView(QWidget):
         self.nameEdit = QLineEdit(self.formContainer)
         self.nameEdit.setObjectName(u"nameEdit")
         self.nameEdit.setMinimumSize(QSize(0, 35))
-        self.nameEdit.setStyleSheet(u"border: 1px solid #C03E35; border-radius: 5;")
+        self.nameEdit.setStyleSheet(u"border: 1px solid #C03E35; border-radius: 5; color: #F5F5F5; padding: 5;")
         self.nameEdit.setMaxLength(64)
 
         self.verticalLayout_2.addWidget(self.nameEdit)
