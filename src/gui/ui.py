@@ -8,7 +8,7 @@ class Ui_MainWindow(object):
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
 
-        self.setupSetPasswordView()
+        self.setupPlayedTimeView()
 
         
     def setupHomeView(self) -> None:
@@ -22,3 +22,7 @@ class Ui_MainWindow(object):
     def setupSetPasswordView(self) -> None:
         self.SetPasswordView = SetPasswordView()
         self.SetPasswordView.setupUi(self.MainWindow)
+
+    def setupPlayedTimeView(self) -> None:
+        self.PlayedTimeView = PlayedTimeView()
+        self.PlayedTimeView.setupUi(self.MainWindow)
