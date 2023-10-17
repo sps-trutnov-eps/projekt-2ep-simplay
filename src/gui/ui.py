@@ -8,7 +8,7 @@ class Ui_MainWindow(object):
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
 
-        self.setupAddCategoryView()
+        self.setupSetPasswordView()
 
         
     def setupHomeView(self) -> None:
@@ -18,3 +18,7 @@ class Ui_MainWindow(object):
     def setupAddCategoryView(self) -> None: 
         self.AddCategoryView = AddCategoryView()
         self.AddCategoryView.setupUi(self.MainWindow)
+
+    def setupSetPasswordView(self) -> None:
+        self.SetPasswordView = SetPasswordView()
+        self.SetPasswordView.setupUi(self.MainWindow)
