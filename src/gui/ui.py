@@ -8,7 +8,7 @@ class Ui_MainWindow(object):
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
 
-        self.setupPlayedTimeView()
+        self.setupHomeView()
 
         
     def setupHomeView(self) -> None:
