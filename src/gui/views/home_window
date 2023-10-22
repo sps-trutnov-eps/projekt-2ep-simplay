@@ -8,96 +8,180 @@ class HomeView(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"HomeWindow")
         MainWindow.resize(1134, 844)
-        MainWindow.setMinimumSize(QSize(0, 0))
-        MainWindow.setMaximumSize(QSize(16777215, 16777215))
-        MainWindow.setStyleSheet(u"background-color: #322F37;")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
+        icon = QIcon()
+        icon.addFile(u":/icons/feather/clock.svg", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(u"*{\n"
+            "	border:none;\n"
+            "	background-color transparent;\n"
+            "    background:none;\n"
+            "	padding:0;\n"
+            "	margin: 0;\n"
+            "	color: none;\n"
+            "}\n"
+            "\n"
+            "#centralwidget {\n"
+            "	\n"
+            "	background-color: rgb(60, 58, 65);\n"
+            "}\n"
+            "#leftMenuSubcontainer {\n"
+            "	background-color: rgb(50, 47, 55);\n"
+            "}\n"
+            "#leftMenuSubcontainer QPushButton{\n"
+            "	text-allign: left;\n"
+            "	padding: 5px 10px;\n"
+            "	border-top-left-radius: 10px;\n"
+            "	border-bottom-left-radius: 10px;\n"
+            "}\n"
+            "#headerContainer {\n"
+            "	background-color: rgb(50, 47, 55);\n"
+            "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.verticalLayout = QVBoxLayout(self.centralwidget)
+        self.horizontalLayout = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.leftMenuContainer = QWidget(self.centralwidget)
+        self.leftMenuContainer.setObjectName(u"leftMenuContainer")
+        self.verticalLayout = QVBoxLayout(self.leftMenuContainer)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-
-        self.navigationBar = NavigationBar(MainWindow, self.verticalLayout)
-
-        self.pageTitle = QLabel(self.centralwidget)
-        self.pageTitle.setObjectName(u"pageTitle")
-        font1 = QFont()
-        font1.setFamily(u"Segoe UI")
-        font1.setPointSize(28)
-        self.pageTitle.setFont(font1)
-        self.pageTitle.setLayoutDirection(Qt.LeftToRight)
-        self.pageTitle.setStyleSheet(u"color: #F5F5F5;")
-        self.pageTitle.setAlignment(Qt.AlignCenter)
-        self.pageTitle.setMargin(20)
-
-        self.verticalLayout.addWidget(self.pageTitle)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout.addItem(self.verticalSpacer_2)
-
-        self.mainContainer = QWidget(self.centralwidget)
-        self.mainContainer.setObjectName(u"mainContainer")
-        self.mainContainer.setMinimumSize(QSize(500, 300))
-        self.horizontalLayout_3 = QHBoxLayout(self.mainContainer)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
-
-        self.formContainer = QWidget(self.mainContainer)
-        self.formContainer.setObjectName(u"formContainer")
-        self.formContainer.setMinimumSize(QSize(0, 0))
-        self.formContainer.setMaximumSize(QSize(200, 16777215))
-        self.verticalLayout_2 = QVBoxLayout(self.formContainer)
+        self.leftMenuSubcontainer = QWidget(self.leftMenuContainer)
+        self.leftMenuSubcontainer.setObjectName(u"leftMenuSubcontainer")
+        self.verticalLayout_2 = QVBoxLayout(self.leftMenuSubcontainer)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.frame = QFrame(self.leftMenuSubcontainer)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.menuBtn = QPushButton(self.frame)
+        self.menuBtn.setObjectName(u"menuBtn")
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/feather/menu.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.menuBtn.setIcon(icon1)
+        self.menuBtn.setIconSize(QSize(24, 24))
 
-        self.verticalLayout_2.addItem(self.verticalSpacer_3)
-
-        self.nameEdit = QLineEdit(self.formContainer)
-        self.nameEdit.setObjectName(u"nameEdit")
-        self.nameEdit.setMinimumSize(QSize(0, 35))
-        self.nameEdit.setStyleSheet(u"border: 1px solid #C03E35; border-radius: 5;")
-        self.nameEdit.setMaxLength(64)
-
-        self.verticalLayout_2.addWidget(self.nameEdit)
-
-        self.submitContainer = QWidget(self.formContainer)
-        self.submitContainer.setObjectName(u"submitContainer")
-        self.horizontalLayout_4 = QHBoxLayout(self.submitContainer)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.pushButton = QPushButton(self.submitContainer)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMaximumSize(QSize(100, 16777215))
-        font2 = QFont()
-        font2.setFamily(u"Segoe UI Historic")
-        font2.setPointSize(10)
-        self.pushButton.setFont(font2)
-        self.pushButton.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-
-        self.horizontalLayout_4.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.menuBtn, 0, Qt.AlignLeft)
 
 
-        self.verticalLayout_2.addWidget(self.submitContainer)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_2.addItem(self.verticalSpacer_4)
-
-
-        self.horizontalLayout_3.addWidget(self.formContainer)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_2)
-
-
-        self.verticalLayout.addWidget(self.mainContainer)
+        self.verticalLayout_2.addWidget(self.frame, 0, Qt.AlignTop)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout.addItem(self.verticalSpacer)
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+        self.frame_2 = QFrame(self.leftMenuSubcontainer)
+        self.frame_2.setObjectName(u"frame_2")
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_3 = QVBoxLayout(self.frame_2)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.timeBtn = QPushButton(self.frame_2)
+        self.timeBtn.setObjectName(u"timeBtn")
+        font = QFont()
+        font.setFamily(u"Segoe UI")
+        self.timeBtn.setFont(font)
+        self.timeBtn.setIcon(icon)
+        self.timeBtn.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_3.addWidget(self.timeBtn)
+
+        self.usersBtn = QPushButton(self.frame_2)
+        self.usersBtn.setObjectName(u"usersBtn")
+        self.usersBtn.setFont(font)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/feather/users.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.usersBtn.setIcon(icon2)
+        self.usersBtn.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_3.addWidget(self.usersBtn)
+
+
+        self.verticalLayout_2.addWidget(self.frame_2, 0, Qt.AlignTop)
+
+
+        self.verticalLayout.addWidget(self.leftMenuSubcontainer)
+
+
+        self.horizontalLayout.addWidget(self.leftMenuContainer, 0, Qt.AlignLeft)
+
+        self.mainBodyContainer = QWidget(self.centralwidget)
+        self.mainBodyContainer.setObjectName(u"mainBodyContainer")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.mainBodyContainer.sizePolicy().hasHeightForWidth())
+        self.mainBodyContainer.setSizePolicy(sizePolicy1)
+        self.mainBodyContainer.setStyleSheet(u"")
+        self.verticalLayout_4 = QVBoxLayout(self.mainBodyContainer)
+        self.verticalLayout_4.setSpacing(0)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.headerContainer = QWidget(self.mainBodyContainer)
+        self.headerContainer.setObjectName(u"headerContainer")
+        self.horizontalLayout_4 = QHBoxLayout(self.headerContainer)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.frame_5 = QFrame(self.headerContainer)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.frame_5)
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.pushButton = QPushButton(self.frame_5)
+        self.pushButton.setObjectName(u"pushButton")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/feather/chevron-up.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon3)
+        self.pushButton.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_3.addWidget(self.pushButton)
+
+        self.pushButton_2 = QPushButton(self.frame_5)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/feather/maximize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_2.setIcon(icon4)
+        self.pushButton_2.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_3.addWidget(self.pushButton_2)
+
+        self.pushButton_3 = QPushButton(self.frame_5)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/feather/x.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon5)
+        self.pushButton_3.setIconSize(QSize(24, 24))
+
+        self.horizontalLayout_3.addWidget(self.pushButton_3)
+
+
+        self.horizontalLayout_4.addWidget(self.frame_5, 0, Qt.AlignRight)
+
+
+        self.verticalLayout_4.addWidget(self.headerContainer, 0, Qt.AlignTop)
+
+        self.mainBodyContent = QWidget(self.mainBodyContainer)
+        self.mainBodyContent.setObjectName(u"mainBodyContent")
+
+        self.verticalLayout_4.addWidget(self.mainBodyContent)
+
+
+        self.horizontalLayout.addWidget(self.mainBodyContainer)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -107,7 +191,20 @@ class HomeView(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        self.pageTitle.setText(QCoreApplication.translate("MainWindow", u"Vytvo\u0159it kategorii", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Vytvo\u0159it", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+#if QT_CONFIG(tooltip)
+        self.menuBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Menu", None))
+#endif // QT_CONFIG(tooltip)
+        self.menuBtn.setText("")
+#if QT_CONFIG(tooltip)
+        self.timeBtn.setToolTip(QCoreApplication.translate("MainWindow", u"View time spent on your games", None))
+#endif // QT_CONFIG(tooltip)
+        self.timeBtn.setText(QCoreApplication.translate("MainWindow", u" Time", None))
+#if QT_CONFIG(tooltip)
+        self.usersBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Manage who's playing", None))
+#endif // QT_CONFIG(tooltip)
+        self.usersBtn.setText(QCoreApplication.translate("MainWindow", u" Users", None))
+        self.pushButton.setText("")
+        self.pushButton_2.setText("")
+        self.pushButton_3.setText("")
     # retranslateUi
-
