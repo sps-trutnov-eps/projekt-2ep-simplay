@@ -40,6 +40,26 @@ class HomeView(object):
 "}\n"
 "#headerContainer {\n"
 "	background-color: rgb(50, 47, 55);\n"
+"}\n"
+"QTabWidget {\n"
+"	background-color: rgb(50, 47, 55);\n"
+"} \n"
+"QTabWidget:tab-bar {\n"
+"	alignment:center;\n"
+"}\n"
+"QTabBar:tab \n"
+"{\n"
+"width: 100px;\n"
+"height: 25px;\n"
+"}\n"
+"QTabBar:tab:selected \n"
+"{\n"
+"	background-color: rgb(100,100,100);\n"
+"	color: rgb(150,150,150)\n"
+"}\n"
+"QTabBar:tab:!selected:hover \n"
+"{\n"
+"	background-color: rgb(50, 47, 55);\n"
 "}")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -207,6 +227,15 @@ class HomeView(object):
 
         self.gameBox = QWidget(self.mainBodyContent)
         self.gameBox.setObjectName(u"gameBox")
+        self.tabWidget = QTabWidget(self.gameBox)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setGeometry(QRect(0, 0, 661, 141))
+        self.tab = QWidget()
+        self.tab.setObjectName(u"tab")
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
 
         self.verticalLayout_5.addWidget(self.gameBox)
 
@@ -231,6 +260,15 @@ class HomeView(object):
 
         self.ctgrBox = QWidget(self.mainBodyContent)
         self.ctgrBox.setObjectName(u"ctgrBox")
+        self.tabWidget_2 = QTabWidget(self.ctgrBox)
+        self.tabWidget_2.setObjectName(u"tabWidget_2")
+        self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
+        self.tab_3 = QWidget()
+        self.tab_3.setObjectName(u"tab_3")
+        self.tabWidget_2.addTab(self.tab_3, "")
+        self.tab_4 = QWidget()
+        self.tab_4.setObjectName(u"tab_4")
+        self.tabWidget_2.addTab(self.tab_4, "")
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 
@@ -243,6 +281,10 @@ class HomeView(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
+
+        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget_2.setCurrentIndex(1)
+
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
@@ -266,6 +308,10 @@ class HomeView(object):
         self.closeBtn.setText("")
         self.Games.setText(QCoreApplication.translate("MainWindow", u"Hry", None))
         self.addGameBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Tab 1", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
         self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Tab 1", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Tab 2", None))
     # retranslateUi
