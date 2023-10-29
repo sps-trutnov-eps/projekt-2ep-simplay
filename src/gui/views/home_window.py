@@ -2,6 +2,8 @@ from qtpy.QtWidgets import *
 from qtpy.QtCore import *
 from qtpy.QtGui import *
 
+from gui.components import *
+
 
 class HomeView(object):        
     def setupUi(self, MainWindow):        
@@ -155,50 +157,8 @@ class HomeView(object):
         self.verticalLayout_4.setSpacing(0)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.headerContainer = QWidget(self.mainBodyContainer)
-        self.headerContainer.setObjectName(u"headerContainer")
-        self.horizontalLayout_4 = QHBoxLayout(self.headerContainer)
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.frame_5 = QFrame(self.headerContainer)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_3 = QHBoxLayout(self.frame_5)
-        self.horizontalLayout_3.setSpacing(0)
-        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.minimizeBtn = QPushButton(self.frame_5)
-        self.minimizeBtn.setObjectName(u"minimizeBtn")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/feather/chevron-up.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.minimizeBtn.setIcon(icon3)
-        self.minimizeBtn.setIconSize(QSize(24, 24))
-
-        self.horizontalLayout_3.addWidget(self.minimizeBtn)
-
-        self.maximizeBtn = QPushButton(self.frame_5)
-        self.maximizeBtn.setObjectName(u"maximizeBtn")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/feather/maximize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.maximizeBtn.setIcon(icon4)
-        self.maximizeBtn.setIconSize(QSize(24, 24))
-
-        self.horizontalLayout_3.addWidget(self.maximizeBtn)
-
-        self.closeBtn = QPushButton(self.frame_5)
-        self.closeBtn.setObjectName(u"closeBtn")
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/feather/x.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.closeBtn.setIcon(icon5)
-        self.closeBtn.setIconSize(QSize(24, 24))
-
-        self.horizontalLayout_3.addWidget(self.closeBtn)
-
-
-        self.horizontalLayout_4.addWidget(self.frame_5, 0, Qt.AlignRight)
-
-
-        self.verticalLayout_4.addWidget(self.headerContainer, 0, Qt.AlignTop)
+        
+        self.navigationBar = NavigationBar(MainWindow, self.verticalLayout_4)                                           # Navbar
 
         self.mainBodyContent = QWidget(self.mainBodyContainer)
         self.mainBodyContent.setObjectName(u"mainBodyContent")
