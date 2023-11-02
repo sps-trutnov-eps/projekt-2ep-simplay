@@ -35,7 +35,7 @@ class HomeView(object):
 "	background-color: rgb(50, 47, 55);\n"
 "}\n"
 "#leftMenuSubcontainer QPushButton{\n"
-"	text-allign: left;\n"
+"	text-align: left;\n"
 "	padding: 5px 10px;\n"
 "	border-top-left-radius: 10px;\n"
 "	border-bottom-left-radius: 10px;\n"
@@ -196,7 +196,7 @@ class HomeView(object):
         self.rmvGameBtn.setMaximumSize(QSize(150, 30))
         self.rmvGameBtn.setFont(font1)
         icon7 = QIcon()
-        icon7.addFile(u"assets/trash-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u"assets/icons/trash-2.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.rmvGameBtn.setIcon(icon7)
         self.rmvGameBtn.setIconSize(QSize(24, 24))
         self.rmvGameBtn.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
