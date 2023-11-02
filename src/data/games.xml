@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<games>
+  <game uuid="1">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="2">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="2">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="3">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="4">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="5">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="6">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+  <game uuid="7">
+    <name>Sibenice</name>
+    <path>path/to/file</path>
+  </game>
+</games>
