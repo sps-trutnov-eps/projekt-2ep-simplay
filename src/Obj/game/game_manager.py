@@ -1,5 +1,4 @@
 from lxml import etree
-import xml
 
 from game import Game
 
