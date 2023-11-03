@@ -180,7 +180,7 @@ class HomeView(object):
         self.Games.setStyleSheet(u"color: #FEFEFE")
         self.addGameBtn = QPushButton(self.gameInfo)
         self.addGameBtn.setObjectName(u"addGameBtn")
-        self.addGameBtn.setGeometry(QRect(340, 10, 150, 30))
+        self.addGameBtn.setGeometry(QRect(290, 10, 150, 30))
         self.addGameBtn.setMinimumSize(QSize(150, 30))
         self.addGameBtn.setMaximumSize(QSize(150, 30))
         self.addGameBtn.setFont(font1)
@@ -188,7 +188,7 @@ class HomeView(object):
         icon6.addFile(u"assets/icons/plus.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.addGameBtn.setIcon(icon6)
         self.addGameBtn.setIconSize(QSize(24, 24))
-        self.addGameBtn.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+        self.addGameBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
         self.rmvGameBtn = QPushButton(self.gameInfo)
         self.rmvGameBtn.setObjectName(u"rmvGameBtn")
         self.rmvGameBtn.setGeometry(QRect(490, 10, 150, 30))
@@ -199,21 +199,22 @@ class HomeView(object):
         icon7.addFile(u"assets/icons/trash-2.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.rmvGameBtn.setIcon(icon7)
         self.rmvGameBtn.setIconSize(QSize(24, 24))
-        self.rmvGameBtn.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+        self.rmvGameBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
 
         self.verticalLayout_5.addWidget(self.gameInfo)
 
         self.gameBox = QWidget(self.mainBodyContent)
         self.gameBox.setObjectName(u"gameBox")
-        self.tabWidget = QTabWidget(self.gameBox)
-        self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(0, 0, 661, 141))
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QWidget()
-        self.tab_2.setObjectName(u"tab_2")
-        self.tabWidget.addTab(self.tab_2, "")
+
+        self.widget = QWidget(self.gameBox)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(0, 0, 661, 141))
+        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy)
+        self.widget.setStyleSheet(u"background-color: #F2F2F2;")
 
         self.verticalLayout_5.addWidget(self.gameBox)
 
@@ -226,11 +227,11 @@ class HomeView(object):
         self.Categories.setStyleSheet(u"color: #FEFEFE")
         self.addCtgrBtn = QPushButton(self.ctgrInfo)
         self.addCtgrBtn.setObjectName(u"addCtgrBtn")
-        self.addCtgrBtn.setGeometry(QRect(320, 10, 150, 30))
         self.addCtgrBtn.setMinimumSize(QSize(150, 30))
         self.addCtgrBtn.setMaximumSize(QSize(150, 30))
+        self.addCtgrBtn.setGeometry(280, 10, 170, 30)
         self.addCtgrBtn.setFont(font1)
-        self.addCtgrBtn.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+        self.addCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
         icon8 = QIcon()
         icon8.addFile(u"assets/icons/plus-square.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.addCtgrBtn.setIcon(icon8)
@@ -248,7 +249,7 @@ class HomeView(object):
         self.rmvCtgrBtn.setFont(font1)
         self.rmvCtgrBtn.setIcon(icon7)
         self.rmvCtgrBtn.setIconSize(QSize(24, 24))
-        self.rmvCtgrBtn.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+        self.rmvCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
 
         self.verticalLayout_5.addWidget(self.ctgrInfo)
 
@@ -276,7 +277,6 @@ class HomeView(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(1)
 
 
@@ -300,11 +300,8 @@ class HomeView(object):
         self.Games.setText(QCoreApplication.translate("MainWindow", u"Hry", None))
         self.addGameBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
         self.rmvGameBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat hru", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Tab 1", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Tab 2", None))
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
         self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
         self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Tab 1", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Tab 2", None))
     # retranslateUi
