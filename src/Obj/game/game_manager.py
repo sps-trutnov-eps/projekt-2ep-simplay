@@ -1,13 +1,13 @@
 from lxml import etree
 
-from game import Game
+from obj.game import Game
 
 
 class GameManager:
 
     def __init__(self) -> None:
         parser = etree.XMLParser(remove_blank_text=True)
-        self.xml_tree = etree.parse("../data/games.xml", parser)
+        self.xml_tree = etree.parse("data/games.xml", parser)
         self.xml_root = self.xml_tree.getroot()
 
         self.games = []
@@ -31,7 +31,7 @@ class GameManager:
         uuid = str(self.getLastUUID() + 1)                                                                              # Creating UUID
 
         self.xml_root.append(self.createGameXML(uuid, name, path))                                                      # Adding changes to the file
-        with open("../data/games.xml", "wb") as f:
+        with open("data/games.xml", "wb") as f:
             f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
         game = Game(uuid, name, path)                                                                                   # Adding changes to active list
@@ -41,7 +41,7 @@ class GameManager:
         for game in self.xml_tree.xpath(str.format("//game[@uuid=\"{0}\"]", uuid)):                                     # Removing the game from xml
             game.getparent().remove(game)
 
-        with open("../data/games.xml", "wb") as f:
+        with open("data/games.xml", "wb") as f:
             f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
         for game in self.games:                                                                                         # Removing the game from the list
