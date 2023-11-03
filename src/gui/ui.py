@@ -1,6 +1,9 @@
 from Custom_Widgets.Widgets import *
+from qtpy.QtCore import *
+import os
 
 from gui.views import *
+from obj.game import *
 
 
 class Ui_MainWindow(object):
@@ -15,6 +18,11 @@ class Ui_MainWindow(object):
         self.HomeView = HomeView()
         self.HomeView.setupUi(self.MainWindow)
 
+        self.game_manager = GameManager()
+
+        
+        self.HomeView.addGameBtn.clicked.connect(self.addGame)
+
     def setupAddCategoryView(self) -> None: 
         self.AddCategoryView = AddCategoryView()
         self.AddCategoryView.setupUi(self.MainWindow)
@@ -26,3 +34,10 @@ class Ui_MainWindow(object):
     def setupPlayedTimeView(self) -> None:
         self.PlayedTimeView = PlayedTimeView()
         self.PlayedTimeView.setupUi(self.MainWindow)
+
+    
+    def addGame(self) -> None:
+        path = QFileDialog.getOpenFileUrl()
+        if (type(path) == str):
+            name = os.path.basename(path)
+            self.game_manager.addGame(name, path)
