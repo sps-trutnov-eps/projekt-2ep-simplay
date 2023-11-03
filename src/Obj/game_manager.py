@@ -29,7 +29,6 @@ class GameManager:
             self.games.append(game)
 
     def addGame(self, name: str, path: str) -> None:
-        print(self.getLastUUID())
         uuid = str(self.getLastUUID() + 1)                                                                              # Creating UUID
 
         self.xml_root.append(self.createGameXML(uuid, name, path))                                                      # Adding changes to the file
@@ -40,12 +39,15 @@ class GameManager:
         self.games.append(game)
 
     def removeGame(self, uuid: str) -> None:
-        for game in self.xml_root:
-            if (game.tag == "game"):
-                if (game.attrib["uuid"] == uuid):
-                    pass
-                    # TODO: Create removing
+        for game in self.xml_tree.xpath(str.format("//game[@uuid=\"{0}\"]", uuid)):                                     # Removing the game from xml
+            game.getparent().remove(game)
 
+        with open("../data/games.xml", "wb") as f:
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+
+        for game in self.games:                                                                                         # Removing the game from the list
+            if (game.getUUID() == uuid):
+                self.games.remove(game)
 
     def getLastUUID(self) -> int:                                                                                       # Getting last uuid             
         if (len(self.games) > 0):
@@ -67,9 +69,3 @@ class GameManager:
         xml_game.append(xml_path)
 
         return xml_game
-
-
-
-gm = GameManager()
-gm.addGame('Sibenice', 'path/to/file')
-gm.removeGame("3")
