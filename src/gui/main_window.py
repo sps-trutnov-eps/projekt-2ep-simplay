@@ -17,9 +17,3 @@ class MainWindow(QMainWindow):
 
         #self.insert.clicked.connect(self.insertTab)
         #self.remove.clicked.connect(self.removeTab)
-
-    def insertTab(self):
-        self.tabWidget.addTab(QWidget(), "Jméno hry")
-
-    def removeTab(self):
-        self.tabWidget.removeTab(0)
