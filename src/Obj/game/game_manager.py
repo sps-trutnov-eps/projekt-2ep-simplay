@@ -27,22 +27,24 @@ class GameManager:
             game = Game(uuid, name, path)
             self.games.append(game)
 
+    def getGames(self) -> list[Game]:
+        return self.games
+
+    def getGameByUUID(self, uuid: int) -> Game:
+        for game in self.games:
+            if (game.getUUID() == uuid):
+                return game
+
     def addGame(self, name: str, path: str) -> None:
         uuid = str(self.getLastUUID() + 1)                                                                              # Creating UUID
 
-        self.xml_root.append(self.createGameXML(uuid, name, path))                                                      # Adding changes to the file
-        with open("data/games.xml", "wb") as f:
-            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+        self.__saveXMLGame(uuid, name, path)
 
         game = Game(uuid, name, path)                                                                                   # Adding changes to active list
         self.games.append(game)
 
     def removeGame(self, uuid: str) -> None:
-        for game in self.xml_tree.xpath(str.format("//game[@uuid=\"{0}\"]", uuid)):                                     # Removing the game from xml
-            game.getparent().remove(game)
-
-        with open("data/games.xml", "wb") as f:
-            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+        self.__removeXMLGame(uuid)
 
         for game in self.games:                                                                                         # Removing the game from the list
             if (game.getUUID() == uuid):
@@ -55,7 +57,20 @@ class GameManager:
             return len(self.games) - 1
         return 0
 
-    def createGameXML(self, uuid: str, name: str, path: str) -> etree.Element:                                          # Creating new XML for game record
+
+    def __saveXMLGame(self, uuid: str, name: str, path: str) -> None:
+        self.xml_root.append(self.__createGameXML(uuid, name, path))                                                    # Adding changes to the file
+        with open("data/games.xml", "wb") as f:
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+
+    def __removeXMLGame(self, uuid) -> None:
+        for game in self.xml_tree.xpath(str.format("//game[@uuid=\"{0}\"]", uuid)):                                     # Removing the game from xml
+            game.getparent().remove(game)
+
+        with open("data/games.xml", "wb") as f:
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+
+    def __createGameXML(self, uuid: str, name: str, path: str) -> etree.Element:                                        # Creating new XML for game record
         xml_game = etree.SubElement(self.xml_root, "game")
         xml_game.set("uuid", uuid)
 
