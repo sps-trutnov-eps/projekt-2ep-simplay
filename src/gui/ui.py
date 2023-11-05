@@ -16,10 +16,10 @@ class Ui_MainWindow(object):
         
     def setupHomeView(self) -> None:
         self.HomeView = HomeView()
+        game_manager = GameManager()
+        self.fillGamesWidget(game_manager)
+
         self.HomeView.setupUi(self.MainWindow)
-
-        self.game_manager = GameManager()
-
         
         self.HomeView.addGameBtn.clicked.connect(self.addGame)
 
@@ -41,3 +41,37 @@ class Ui_MainWindow(object):
         if (type(path) == str):
             name = os.path.basename(path)
             self.game_manager.addGame(name, path)
+
+    def fillGamesWidget(self, game_manager: GameManager) -> None:
+        self.gameFont = QFont()
+        self.gameFont.setFamily(u"Segoe UI")
+        self.gameFont.setPointSize(12)
+
+        self.gameSubFont = QFont()
+        self.gameSubFont.setFamily(u"Segoe UI")
+        self.gameSubFont.setPointSize(10)
+
+        for game in game_manager.getGames():
+            self.game = QWidget()
+            self.game.setStyleSheet(u"background-color: #28262C")
+            self.game.setMaximumWidth(100)
+            self.game.setContentsMargins(QMargins(5, 5, 5, 5))
+            self.game.setCursor(QCursor(Qt.PointingHandCursor))
+
+            self.layout = QVBoxLayout(self.game)
+            self.title = QLabel(self.game)
+            self.title.setText("Hra 1")
+            self.title.setFont(self.gameFont)
+            self.title.setStyleSheet(u"color: #FEFEFE")
+            self.layout.addWidget(self.title)
+            self.subtitle = QLabel(self.game)
+            self.subtitle.setText("1")
+            self.subtitle.setFont(self.gameSubFont)
+            self.subtitle.setStyleSheet(u"color: #28262C")
+            self.layout.addWidget(self.subtitle)
+
+            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.game.setLayout(self.layout)
+
+
+            self.HomeView.games["game1"] = self.game;

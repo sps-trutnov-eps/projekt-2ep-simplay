@@ -5,7 +5,12 @@ from qtpy.QtGui import *
 from gui.components import *
 
 
-class HomeView(object):        
+class HomeView(object):    
+
+    def __init__(self) -> None:
+        self.games = {}
+
+
     def setupUi(self, MainWindow):        
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"HomeWindow")
@@ -203,9 +208,12 @@ class HomeView(object):
 
         self.verticalLayout_5.addWidget(self.gameInfo)
 
-        self.gameBox = QWidget(self.mainBodyContent)
+
+
+        self.gameBox = QWidget(self.mainBodyContent)                                                                                            # Games
         self.gameBox.setObjectName(u"gameBox")
 
+        
         self.widget = QWidget(self.gameBox)
         self.widget.setObjectName(u"widget")
         self.widget.setGeometry(QRect(0, 0, 661, 141))
@@ -214,7 +222,15 @@ class HomeView(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
         self.widget.setSizePolicy(sizePolicy)
-        self.widget.setStyleSheet(u"background-color: #F2F2F2;")
+        self.widget.setStyleSheet(u"background-color: #FEFEFE;")
+
+        self.widgetLayout = QHBoxLayout(self.widget)
+
+        for game in self.games:
+                self.widgetLayout.addWidget(self.games[game]) 
+
+        
+        self.widget.setLayout(self.widgetLayout)
 
         self.verticalLayout_5.addWidget(self.gameBox)
 
@@ -304,4 +320,5 @@ class HomeView(object):
         self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
         self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Tab 2", None))
+
     # retranslateUi
