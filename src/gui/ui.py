@@ -11,7 +11,7 @@ class Ui_MainWindow(object):
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
 
-        self.setupHomeView()
+        self.setupLockedScreenView()
 
         
     def setupHomeView(self) -> None:
@@ -22,6 +22,10 @@ class Ui_MainWindow(object):
         self.HomeView.setupUi(self.MainWindow)
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
+
+    def setupLockedScreenView(self) -> None:
+        self.LockedScreenView = LockedScreenView()
+        self.LockedScreenView.setupUi(self.MainWindow)
 
     def setupAddCategoryView(self) -> None: 
         self.AddCategoryView = AddCategoryView()
