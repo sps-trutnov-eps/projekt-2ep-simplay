@@ -1,6 +1,6 @@
 # Simplay
 
-Jednoduchý launcher programovaný v Pythonu
+Jednoduchý herní launcher programovaný v Pythonu
 
 ## Funkce
 - Zabezpečení přístupu
