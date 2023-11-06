@@ -35,7 +35,7 @@ Pro následné spuštění hry stačí kliknout na tlačítko spustit u dané hr
      - Zabezpečení přístupu
      - Přidávání her
      - Spouštění her
-<br>
+
 - Lukáš Hajnyš
      - Měření odehraného času
      - Defaultní hry
