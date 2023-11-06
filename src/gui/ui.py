@@ -4,14 +4,23 @@ import os
 
 from gui.views import *
 from obj.game import *
+from obj.security import *
 
 
 class Ui_MainWindow(object):
 
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
+        self.EncodingManager = EncodingManager()
 
-        self.setupLockedScreenView()
+        password_file = ""
+        with open("data/password.txt", 'r', encoding="utf-8") as f:
+            password_file = f.readline()
+
+        if (len(password_file) > 0):
+            self.setupLockedScreenView()
+        else:
+            self.setupHomeView()
 
         
     def setupHomeView(self) -> None:
@@ -22,10 +31,13 @@ class Ui_MainWindow(object):
         self.HomeView.setupUi(self.MainWindow)
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
+        self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
 
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
         self.LockedScreenView.setupUi(self.MainWindow)
+
+        self.LockedScreenView.pushButton.clicked.connect(lambda: self.checkPassword(self.LockedScreenView.lineEdit.text()))
 
     def setupAddCategoryView(self) -> None: 
         self.AddCategoryView = AddCategoryView()
@@ -34,6 +46,8 @@ class Ui_MainWindow(object):
     def setupSetPasswordView(self) -> None:
         self.SetPasswordView = SetPasswordView()
         self.SetPasswordView.setupUi(self.MainWindow)
+
+        self.SetPasswordView.pushButton.clicked.connect(lambda: self.setPassword(self.SetPasswordView.lineEdit.text()))
 
     def setupPlayedTimeView(self) -> None:
         self.PlayedTimeView = PlayedTimeView()
@@ -89,3 +103,24 @@ class Ui_MainWindow(object):
             self.game.setLayout(self.layout)
 
             self.HomeView.games["game" + game.getUUID()] = self.game;
+
+    def setPassword(self, password: str) -> None:
+        encoded_password = self.EncodingManager.encrypt(password)
+
+        with open("data/password.txt", 'w', encoding="utf-8") as f:
+            if (len(password) > 0):
+                f.write(encoded_password)
+
+        self.setupHomeView()
+
+    def checkPassword(self, password: str) -> bool:
+        password_file = "";
+        with open("data/password.txt", 'r', encoding="utf-8") as f:
+            password_file = f.readline()
+
+        if (password == self.EncodingManager.decrypt(password_file)):
+            self.setupHomeView()
+            return True
+
+        self.setupLockedScreenView()
+        return False
