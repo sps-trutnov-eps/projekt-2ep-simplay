@@ -1,3 +1,7 @@
+import os
+import subprocess
+
+
 class Game:
 
     def __init__(self, uuid: str, name: str, path: str) -> None:
@@ -14,3 +18,11 @@ class Game:
 
     def getPath(self) -> str:
         return self.path
+
+    def run(self) -> None:
+        extension = os.path.basename(self.path)
+        extension = extension.split('.')[1]
+        if extension == "exe":
+            os.startfile(self.path)
+        elif extension == "py":
+            subprocess.call(["python", self.path])
