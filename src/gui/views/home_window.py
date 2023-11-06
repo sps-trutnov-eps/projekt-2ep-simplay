@@ -141,6 +141,7 @@ class HomeView(object):
         self.usersBtn.setIcon(icon2)
         self.usersBtn.setIconSize(QSize(24, 24))
         self.usersBtn.setStyleSheet(u"color: #FEFEFE")
+        self.usersBtn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_3.addWidget(self.usersBtn)
 
@@ -189,6 +190,7 @@ class HomeView(object):
         self.addGameBtn.setMinimumSize(QSize(150, 30))
         self.addGameBtn.setMaximumSize(QSize(150, 30))
         self.addGameBtn.setFont(font1)
+        self.addGameBtn.setCursor(QCursor(Qt.PointingHandCursor))
         icon6 = QIcon()
         icon6.addFile(u"assets/icons/plus.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.addGameBtn.setIcon(icon6)
@@ -310,7 +312,6 @@ class HomeView(object):
         self.usersBtn.setText(QCoreApplication.translate("MainWindow", u" Zabezpečení", None))
         self.Games.setText(QCoreApplication.translate("MainWindow", u"Hry", None))
         self.addGameBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
-        self.rmvGameBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat hru", None))
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
         self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
         self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
