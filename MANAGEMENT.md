@@ -3,7 +3,7 @@
 ## Tomáš
 1. Zaheslování přístupu
 2. Přidávání her ✅
-3. Spouštění her
+3. Spouštění her ✅
 
 <pre></pre>
 
