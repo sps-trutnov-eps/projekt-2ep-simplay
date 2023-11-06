@@ -214,9 +214,12 @@ class HomeView(object):
         self.gameBox.setObjectName(u"gameBox")
 
         
-        self.widget = QWidget(self.gameBox)
+        self.widgetScroll = QScrollArea(self.gameBox)
+        self.widgetScroll.setGeometry(0, 0, 661, 141)
+        self.widgetScroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+
+        self.widget = QWidget(self.widgetScroll)
         self.widget.setObjectName(u"widget")
-        self.widget.setGeometry(QRect(0, 0, 661, 141))
         sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -231,6 +234,7 @@ class HomeView(object):
 
         
         self.widget.setLayout(self.widgetLayout)
+        self.widgetScroll.setWidget(self.widget)
 
         self.verticalLayout_5.addWidget(self.gameBox)
 

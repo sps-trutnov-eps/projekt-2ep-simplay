@@ -52,20 +52,22 @@ class Ui_MainWindow(object):
         self.gameSubFont.setPointSize(10)
 
         for game in game_manager.getGames():
+            print(game)
             self.game = QWidget()
             self.game.setStyleSheet(u"background-color: #28262C")
             self.game.setMaximumWidth(100)
+            self.game.setMinimumHeight(130)
             self.game.setContentsMargins(QMargins(5, 5, 5, 5))
             self.game.setCursor(QCursor(Qt.PointingHandCursor))
 
             self.layout = QVBoxLayout(self.game)
             self.title = QLabel(self.game)
-            self.title.setText("Hra 1")
+            self.title.setText(game.getName())
             self.title.setFont(self.gameFont)
             self.title.setStyleSheet(u"color: #FEFEFE")
             self.layout.addWidget(self.title)
             self.subtitle = QLabel(self.game)
-            self.subtitle.setText("1")
+            self.subtitle.setText(game.getUUID())
             self.subtitle.setFont(self.gameSubFont)
             self.subtitle.setStyleSheet(u"color: #28262C")
             self.layout.addWidget(self.subtitle)
@@ -74,4 +76,4 @@ class Ui_MainWindow(object):
             self.game.setLayout(self.layout)
 
 
-            self.HomeView.games["game1"] = self.game;
+            self.HomeView.games["game" + game.getUUID()] = self.game;
