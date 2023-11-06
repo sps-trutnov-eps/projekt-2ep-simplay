@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
 
         self.HomeView.setupUi(self.MainWindow)
         
-        self.HomeView.addGameBtn.clicked.connect(self.addGame)
+        self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
 
     def setupAddCategoryView(self) -> None: 
         self.AddCategoryView = AddCategoryView()
@@ -36,11 +36,15 @@ class Ui_MainWindow(object):
         self.PlayedTimeView.setupUi(self.MainWindow)
 
     
-    def addGame(self) -> None:
-        path = QFileDialog.getOpenFileUrl()
-        if (type(path) == str):
+    def addGame(self, game_manager) -> None:
+        path = QFileDialog.getOpenFileName(filter="Podporované formáty (*.py; *.exe)")
+        path = path[0]
+        
+        if (type(path) == str and len(path) > 0):
             name = os.path.basename(path)
-            self.game_manager.addGame(name, path)
+            game_manager.addGame(name, path)
+            self.setupHomeView()
+
 
     def fillGamesWidget(self, game_manager: GameManager) -> None:
         self.gameFont = QFont()
@@ -52,7 +56,6 @@ class Ui_MainWindow(object):
         self.gameSubFont.setPointSize(10)
 
         for game in game_manager.getGames():
-            print(game)
             self.game = QWidget()
             self.game.setStyleSheet(u"background-color: #28262C")
             self.game.setMaximumWidth(100)
