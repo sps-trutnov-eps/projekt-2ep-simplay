@@ -1,7 +1,7 @@
 # Management práce
 
 ## Tomáš
-1. Zaheslování přístupu
+1. Zaheslování přístupu ✅
 2. Přidávání her ✅
 3. Spouštění her ✅
 
