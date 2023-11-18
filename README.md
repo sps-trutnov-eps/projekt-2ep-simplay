@@ -11,6 +11,26 @@ Jednoduchý herní launcher programovaný v Pythonu
 
 
 ## Návod
+### Instalace
+Pro instalaci je třeba nainstalovat některé externí balíčky:
+- PyQt5
+  ~~~
+  pip install PyQt5
+  ~~~
+- PySide2
+  ~~~
+  pip install PySide2
+  ~~~
+- PySide6
+  ~~~
+  pip install PySide6
+  ~~~
+- qtpy
+  ~~~
+  pip install qtpy
+  ~~~
+- CustomWidgets
+
 ### Zabezpečení přístupu
 Pokud si přejete zaheslovat aplikaci proti neoprávněnému užívání, lze toho docílit pomocí následujících kroků:
 
