@@ -30,6 +30,22 @@ Pro instalaci je třeba nainstalovat některé externí balíčky:
   pip install qtpy
   ~~~
 - CustomWidgets
+  - pro instalaci této knihovny do os windows je potřeba doinstalovat knihovnu pipwin
+    ~~~
+    pip install pipwin
+    ~~~
+    - z této knihovny následně nainstalujeme cairocffi
+      ~~~
+      pipwin install cairocffi
+      ~~~
+  - poté nainstalujeme samotné CustomWidgets
+    ~~~
+    pip install QT-PyQt-PySide-Custom-Widgets
+    ~~~
+  - a pro jistotu upgradujeme na nejnovější verzi
+    ~~~
+    pip install --upgrade QT-PyQt-PySide-Custom-Widgets
+    ~~~
 
 ### Zabezpečení přístupu
 Pokud si přejete zaheslovat aplikaci proti neoprávněnému užívání, lze toho docílit pomocí následujících kroků:
