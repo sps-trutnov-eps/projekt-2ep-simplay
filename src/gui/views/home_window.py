@@ -271,12 +271,6 @@ class HomeView(object):
         self.tabWidget_2 = QTabWidget(self.ctgrBox)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
         self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
-        self.tab_3 = QWidget()
-        self.tab_3.setObjectName(u"tab_3")
-        self.tabWidget_2.addTab(self.tab_3, "")
-        self.tab_4 = QWidget()
-        self.tab_4.setObjectName(u"tab_4")
-        self.tabWidget_2.addTab(self.tab_4, "")
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 
@@ -315,6 +309,5 @@ class HomeView(object):
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
         self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
         self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Tab 2", None))
 
     # retranslateUi

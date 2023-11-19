@@ -5,7 +5,8 @@ import os
 from gui.views import *
 from Obj.game import *
 from Obj.security import *
-
+from Obj.time import *
+from Obj.add_category import *
 
 class Ui_MainWindow(object):
 
