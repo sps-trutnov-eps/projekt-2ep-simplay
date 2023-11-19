@@ -3,8 +3,8 @@ from qtpy.QtCore import *
 import os
 
 from gui.views import *
-from obj.game import *
-from obj.security import *
+from Obj.game import *
+from Obj.security import *
 
 
 class Ui_MainWindow(object):
@@ -102,7 +102,7 @@ class Ui_MainWindow(object):
             self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
             self.game.setLayout(self.layout)
 
-            self.HomeView.games["game" + game.getUUID()] = self.game;
+            self.HomeView.games["game" + game.getUUID()] = self.game
 
     def setPassword(self, password: str) -> None:
         encoded_password = self.EncodingManager.encrypt(password)
@@ -114,7 +114,7 @@ class Ui_MainWindow(object):
         self.setupHomeView()
 
     def checkPassword(self, password: str) -> bool:
-        password_file = "";
+        password_file = ""
         with open("data/password.txt", 'r', encoding="utf-8") as f:
             password_file = f.readline()
 
