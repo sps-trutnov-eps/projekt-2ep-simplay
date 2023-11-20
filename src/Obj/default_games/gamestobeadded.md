@@ -1,3 +1,0 @@
-hangman
-tictactoe
-rps
