@@ -26,6 +26,13 @@ class Ui_MainWindow(object):
     def setupHomeView(self) -> None:
         self.HomeView = HomeView()
         game_manager = GameManager()
+
+        game1 = Game()                                  # Adding default games to list
+        self.game_manager.games.append(game1)
+
+        game2 = Game()
+        self.game_manager.games.append(game2)
+
         self.fillGamesWidget(game_manager)
 
         self.HomeView.setupUi(self.MainWindow)
