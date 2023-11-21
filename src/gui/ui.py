@@ -129,36 +129,36 @@ class Ui_MainWindow(object):
 
             self.HomeView.games["game" + game.getUUID()] = self.game
 
-        # Zde naházej hry do listu self.HomeView.games
-        # self.game = QWidget()
-        # self.game.setStyleSheet(u"background-color: #28262C")
-        # self.game.setMaximumWidth(100)
-        # self.game.setMinimumHeight(130)
-        # self.game.setContentsMargins(QMargins(5, 5, 5, 5))
-        # self.game.setCursor(QCursor(Qt.PointingHandCursor))
+        
+        # self.category = QWidget()
+        # self.category.setStyleSheet(u"background-color: #28262C")
+        # self.category.setMaximumWidth(100)
+        # self.category.setMinimumHeight(130)
+        # self.category.setContentsMargins(QMargins(5, 5, 5, 5))
+        # self.category.setCursor(QCursor(Qt.PointingHandCursor))
 
-        # self.layout = QVBoxLayout(self.game)
-        # self.title = QLabel(self.game)
+        # self.layout = QVBoxLayout(self.category)
+        # self.title = QLabel(self.category)
         # self.title.setText(game.getName())
-        # self.title.setFont(self.gameFont)
+        # self.title.setFont(self.categoryFont)
         # self.title.setStyleSheet(u"color: #FEFEFE")
         # self.layout.addWidget(self.title)
-        # self.subtitle = QLabel(self.game)
+        # self.subtitle = QLabel(self.category)
         # self.subtitle.setText(game.getUUID())
-        # self.subtitle.setFont(self.gameSubFont)
+        # self.subtitle.setFont(self.categorySubFont)
         # self.subtitle.setStyleSheet(u"color: #28262C")
         # self.layout.addWidget(self.subtitle)
 
-        # self.button = QPushButton(self.game)
+        # self.button = QPushButton(self.category)
         # self.button.setText("Spustit")
         # self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
         # self.layout.addWidget(self.button)
         # self.button.clicked.connect(game.run)
 
         # self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        # self.game.setLayout(self.layout)
+        # self.category.setLayout(self.layout)
 
-        # self.HomeView.games["game" + game.getUUID()] = self.game
+        # self.HomeView.games["game" + game.getUUID()] = self.category
         # Atd.
         
 
