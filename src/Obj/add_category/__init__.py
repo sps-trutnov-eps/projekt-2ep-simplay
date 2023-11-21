@@ -1,5 +1,7 @@
-from Obj.add_category.add_category import AddCategory
+from Obj.add_category.category import Category
+from Obj.add_category.add_category import CategoryManager
 
 __ALL__ = [
-    "AddCategory"
+    "Category"
+    "CategoryManager"
 ]

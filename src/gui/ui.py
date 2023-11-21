@@ -29,12 +29,16 @@ class Ui_MainWindow(object):
         game_manager = GameManager()
 
         # Adding default games to list
+
+        # ! Prostě to nechce fungovat?
         game1 = Game("0", "RPS", "data\rps.exe")                                  
         game_manager.games.append(game1)
 
+        # ! Prostě to nechce fungovat?
         game2 = Game("1", "TicTacToe", "data\tictactoe.exe")
         game_manager.games.append(game2)
 
+        # Jsem kouzelník a funguju
         game3 = Game("2", "Hangman", "data\hangman.exe")
         game_manager.games.append(game3)
 
@@ -73,6 +77,15 @@ class Ui_MainWindow(object):
         if (type(path) == str and len(path) > 0):
             name = os.path.basename(path)
             game_manager.addGame(name, path)
+            self.setupHomeView()
+
+    def addCategory(self, category_manager) -> None:
+        path = QFileDialog.getOpenFileName()
+        path = path[0]
+        
+        if (type(path) == str and len(path) > 0):
+            name = os.path.basename(path)
+            category_manager.addCategory(name, path)
             self.setupHomeView()
 
 
@@ -147,6 +160,8 @@ class Ui_MainWindow(object):
 
         # self.HomeView.games["game" + game.getUUID()] = self.game
         # Atd.
+        
+
 
     def setPassword(self, password: str) -> None:
         encoded_password = self.EncodingManager.encrypt(password)
