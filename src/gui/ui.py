@@ -31,11 +31,11 @@ class Ui_MainWindow(object):
         # Adding default games to list
 
         # ! Prostě to nechce fungovat?
-        game1 = Game("0", "RPS", "data\rps.exe")                                  
+        game1 = Game("0", "RPS", "data\\rps.exe")                                  
         game_manager.games.append(game1)
 
         # ! Prostě to nechce fungovat?
-        game2 = Game("1", "TicTacToe", "data\tictactoe.exe")
+        game2 = Game("1", "TicTacToe", "data\\tictactoe.exe")
         game_manager.games.append(game2)
 
         # Jsem kouzelník a funguju

@@ -1,4 +1,4 @@
-from Obj.time.time_count import TimeCount
+from obj.time.time_count import TimeCount
 
 __ALL__ = [
     "TimeCount"
