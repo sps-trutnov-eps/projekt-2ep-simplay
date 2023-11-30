@@ -130,6 +130,7 @@ class HomeView(object):
         self.timeBtn.setIcon(icon)
         self.timeBtn.setIconSize(QSize(24, 24))
         self.timeBtn.setStyleSheet(u"color: #FEFEFE")
+        self.timeBtn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_3.addWidget(self.timeBtn)
 
@@ -252,6 +253,7 @@ class HomeView(object):
         self.rmvCtgrBtn = QPushButton(self.ctgrInfo)
         self.rmvCtgrBtn.setObjectName(u"rmvCtgrBtn")
         self.rmvCtgrBtn.setGeometry(QRect(480, 10, 170, 30))
+        self.rmvCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
         sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)

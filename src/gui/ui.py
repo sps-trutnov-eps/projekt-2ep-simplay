@@ -3,10 +3,10 @@ from qtpy.QtCore import *
 import os
 
 from gui.views import *
-from obj.game import *
-from obj.security import *
-from obj.time import *
-from obj.add_category import *
+from Obj.game import *
+from Obj.security import *
+from Obj.time import *
+from Obj.add_category import *
 
 class Ui_MainWindow(object):
 
@@ -30,15 +30,12 @@ class Ui_MainWindow(object):
 
         # Adding default games to list
 
-        # ! Prostě to nechce fungovat?
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
         game_manager.games.append(game1)
 
-        # ! Prostě to nechce fungovat?
         game2 = Game("1", "TicTacToe", "data\\tictactoe.exe")
         game_manager.games.append(game2)
 
-        # Jsem kouzelník a funguju
         game3 = Game("2", "Hangman", "data\hangman.exe")
         game_manager.games.append(game3)
 
