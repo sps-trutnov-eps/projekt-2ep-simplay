@@ -1,6 +1,6 @@
 from lxml import etree
 
-from obj.add_category.category import Category
+from Obj.add_category.category import Category
 
 
 class CategoryManager:
