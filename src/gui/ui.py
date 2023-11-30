@@ -6,7 +6,7 @@ from gui.views import *
 from Obj.game import *
 from Obj.security import *
 from Obj.time import *
-from Obj.add_category import *
+from Obj.category import *
 
 class Ui_MainWindow(object):
 
@@ -27,6 +27,7 @@ class Ui_MainWindow(object):
     def setupHomeView(self) -> None:
         self.HomeView = HomeView()
         game_manager = GameManager()
+        category_manager = CategoryManager(game_manager)
 
         # Adding default games to list
 
@@ -45,6 +46,7 @@ class Ui_MainWindow(object):
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
+        self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
 
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
@@ -76,14 +78,12 @@ class Ui_MainWindow(object):
             game_manager.addGame(name, path)
             self.setupHomeView()
 
-    def addCategory(self, category_manager) -> None:
-        path = QFileDialog.getOpenFileName()
-        path = path[0]
+    def addCategory(self, category_manager: CategoryManager) -> None:
+        name = QInputDialog.getText(self.HomeView.centralwidget, "Přidat kategorii", "Název kategorie")
+        name = name[0]
         
-        if (type(path) == str and len(path) > 0):
-            name = os.path.basename(path)
-            category_manager.addCategory(name, path)
-            self.setupHomeView()
+        if (len(name) > 0):
+            category_manager.addCategory(name)
 
 
     def fillGamesWidget(self, game_manager: GameManager) -> None:
