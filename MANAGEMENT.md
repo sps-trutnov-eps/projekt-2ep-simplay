@@ -5,8 +5,6 @@
 2. Přidávání her ✅
 3. Spouštění her ✅
 
-<pre></pre>
-
 ## Lukáš
 1. Měření odehraného času
 2. Defaultní hry
