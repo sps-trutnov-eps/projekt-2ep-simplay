@@ -166,10 +166,6 @@ class Ui_MainWindow(object):
             self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
             self.category.setLayout(self.layout)
 
-            # self.HomeView.games["game" + game.getUUID()] = self.category
-            # Atd.
-        
-
 
     def setPassword(self, password: str) -> None:
         encoded_password = self.EncodingManager.encrypt(password)
