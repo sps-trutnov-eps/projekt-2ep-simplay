@@ -41,6 +41,7 @@ class Ui_MainWindow(object):
         game_manager.games.append(game3)
 
         self.fillGamesWidget(game_manager)
+        self.fillCategoriesWidget(category_manager)
 
         self.HomeView.setupUi(self.MainWindow)
         
@@ -85,7 +86,7 @@ class Ui_MainWindow(object):
         if (len(name) > 0):
             category_manager.addCategory(name)
 
-        self.fillCategoriesWidget(category_manager)
+        self.setupHomeView()
 
 
     def fillGamesWidget(self, game_manager: GameManager) -> None:
@@ -175,9 +176,6 @@ class Ui_MainWindow(object):
 
 
             self.HomeView.categories[category.getName()] = categoryWidget
-
-
-            self.HomeView.setupUi(self.MainWindow)
 
 
     def setPassword(self, password: str) -> None:
