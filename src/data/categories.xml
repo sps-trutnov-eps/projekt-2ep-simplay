@@ -1,31 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <categories>
-  <category uuid="2">
-    <name>dsfsdf</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>dsdsf</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>wetergt56</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>sdffds</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>sdffds</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>sdffds+</name>
-    <games/>
-  </category>
-  <category uuid="2">
-    <name>ewr</name>
-    <games/>
-  </category>
-</categories>
+
+<category uuid="2"><name>cus</name><games/></category></categories>

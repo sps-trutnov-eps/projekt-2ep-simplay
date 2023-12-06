@@ -167,7 +167,7 @@ class Ui_MainWindow(object):
             self.categoryWidget.setLayout(self.layout)
 
             # ! hazi string misto widget
-            self.HomeView.categories["category" + category.getUUID()] = self.categoryWidget
+            self.HomeView.categories[QWidget()] = self.categoryWidget
 
 
             self.HomeView.setupUi(self.MainWindow)
