@@ -269,8 +269,7 @@ class HomeView(object):
         self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
         
         for category in self.categories:
-             print(type(category))
-             self.tabWidget_2.addTab(QWidget(), "Nazev")
+             self.tabWidget_2.addTab(self.categories[category], category)
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 

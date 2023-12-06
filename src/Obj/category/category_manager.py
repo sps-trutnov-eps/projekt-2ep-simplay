@@ -30,8 +30,8 @@ class CategoryManager:
                 game = self.game_manager.getGameByUUID(uuid)
                 games.append(game)
 
-        category = Category(uuid, name, games)
-        self.categories.append(category)
+            category = Category(uuid, name, games)
+            self.categories.append(category)
 
     def getCategories(self) -> list[Category]:
         return self.categories
@@ -50,7 +50,7 @@ class CategoryManager:
         self.categories.append(category)
 
 
-    def getLastUUID(self) -> int:                                                                                       # Getting last uuid
+    def getLastUUID(self) -> int:                                                                                       # Getting last uuid        
         if (len(self.categories) > 0):
             if (len(self.categories) == 1):
                 return 1

@@ -129,45 +129,52 @@ class Ui_MainWindow(object):
             self.HomeView.games["game" + game.getUUID()] = self.game
 
 
-    def fillCategoriesWidget(self, add_category: CategoryManager) -> None:
-        self.categoryFont = QFont()
-        self.categoryFont.setFamily(u"Segoe UI")
-        self.categoryFont.setPointSize(12)
+    def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
+        for category in category_manager.getCategories():
+            categoryWidget = QWidget()
+            categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
-        self.categorySubFont = QFont()
-        self.categorySubFont.setFamily(u"Segoe UI")
-        self.categorySubFont.setPointSize(10)
+            for game in category.getGames():
+                gameWidget = QWidget(categoryWidget)                                       # Main game widget
+                gameWidget.setStyleSheet(u"background-color: #28262C")
+                gameWidget.setMaximumWidth(100)
+                gameWidget.setMinimumHeight(130)
+                gameWidget.setContentsMargins(QMargins(5, 5, 5, 5))
+                gameWidget.setCursor(QCursor(Qt.PointingHandCursor))
+                
+                layout = QVBoxLayout(gameWidget)
 
-        for category in add_category.getCategories():
-            self.categoryWidget = QWidget()
-            self.categoryWidget.setStyleSheet(u"background-color: #28262C")
-            self.categoryWidget.setMaximumWidth(100)
-            self.categoryWidget.setMinimumHeight(130)
-            self.categoryWidget.setContentsMargins(QMargins(5, 5, 5, 5))
-            self.categoryWidget.setCursor(QCursor(Qt.PointingHandCursor))
 
-            self.layout = QVBoxLayout(self.categoryWidget)
-            self.title = QLabel(self.categoryWidget)
-            self.title.setText(category.getName())
-            self.title.setFont(self.categoryFont)
-            self.title.setStyleSheet(u"color: #FEFEFE")
-            self.layout.addWidget(self.title)
-            self.subtitle = QLabel(self.categoryWidget)
-            self.subtitle.setText(category.getUUID())
-            self.subtitle.setFont(self.categorySubFont)
-            self.subtitle.setStyleSheet(u"color: #28262C")
-            self.layout.addWidget(self.subtitle)
+                title = QLabel(gameWidget)
+                title.setText(game.getName())
+                title.setFont(self.gameFont)
+                title.setStyleSheet(u"color: #FEFEFE")
+                layout.addWidget(title)
+                
+                subtitle = QLabel(gameWidget)
+                subtitle.setText(game.getUUID())
+                subtitle.setFont(self.gameSubFont)
+                subtitle.setStyleSheet(u"color: #28262C")
+                layout.addWidget(subtitle)
 
-            self.button = QPushButton(self.categoryWidget)
-            self.button.setText("Zobrazit")
-            self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-            self.layout.addWidget(self.button)
+            
+                button = QPushButton(gameWidget)
+                button.setText("Spustit")
+                button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+                layout.addWidget(button)
+                button.clicked.connect(game.run)
 
-            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.categoryWidget.setLayout(self.layout)
 
-            # ! hazi string misto widget
-            self.HomeView.categories[QWidget()] = self.categoryWidget
+                layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                game.setLayout(layout)
+
+
+
+                categoryWidgetLayout.addWidget(gameWidget)
+            # Game
+
+
+            self.HomeView.categories[category.getName()] = categoryWidget
 
 
             self.HomeView.setupUi(self.MainWindow)
