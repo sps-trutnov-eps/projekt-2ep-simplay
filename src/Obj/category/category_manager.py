@@ -32,9 +32,6 @@ class CategoryManager:
 
         category = Category(uuid, name, games)
         self.categories.append(category)
-        
-        print(self.categories)
-        print(self.getLastUUID())
 
     def getCategories(self) -> list[Category]:
         return self.categories
@@ -53,8 +50,7 @@ class CategoryManager:
         self.categories.append(category)
 
 
-    def getLastUUID(self) -> int:                                                                                       # Getting last uuid             
-        print(self.categories)
+    def getLastUUID(self) -> int:                                                                                       # Getting last uuid
         if (len(self.categories) > 0):
             if (len(self.categories) == 1):
                 return 1

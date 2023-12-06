@@ -85,6 +85,8 @@ class Ui_MainWindow(object):
         if (len(name) > 0):
             category_manager.addCategory(name)
 
+        self.fillCategoriesWidget(category_manager)
+
 
     def fillGamesWidget(self, game_manager: GameManager) -> None:
         self.gameFont = QFont()
@@ -137,34 +139,38 @@ class Ui_MainWindow(object):
         self.categorySubFont.setPointSize(10)
 
         for category in add_category.getCategories():
-            self.category = QWidget()
-            self.category.setStyleSheet(u"background-color: #28262C")
-            self.category.setMaximumWidth(100)
-            self.category.setMinimumHeight(130)
-            self.category.setContentsMargins(QMargins(5, 5, 5, 5))
-            self.category.setCursor(QCursor(Qt.PointingHandCursor))
+            self.categoryWidget = QWidget()
+            self.categoryWidget.setStyleSheet(u"background-color: #28262C")
+            self.categoryWidget.setMaximumWidth(100)
+            self.categoryWidget.setMinimumHeight(130)
+            self.categoryWidget.setContentsMargins(QMargins(5, 5, 5, 5))
+            self.categoryWidget.setCursor(QCursor(Qt.PointingHandCursor))
 
-            self.layout = QVBoxLayout(self.category)
-            self.title = QLabel(self.category)
+            self.layout = QVBoxLayout(self.categoryWidget)
+            self.title = QLabel(self.categoryWidget)
             self.title.setText(category.getName())
             self.title.setFont(self.categoryFont)
             self.title.setStyleSheet(u"color: #FEFEFE")
             self.layout.addWidget(self.title)
-            self.subtitle = QLabel(self.category)
+            self.subtitle = QLabel(self.categoryWidget)
             self.subtitle.setText(category.getUUID())
             self.subtitle.setFont(self.categorySubFont)
             self.subtitle.setStyleSheet(u"color: #28262C")
             self.layout.addWidget(self.subtitle)
 
-            self.button = QPushButton(self.category)
+            self.button = QPushButton(self.categoryWidget)
             self.button.setText("Zobrazit")
             self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
             self.layout.addWidget(self.button)
 
-            #self.button.clicked.connect(game.run)
-
             self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.category.setLayout(self.layout)
+            self.categoryWidget.setLayout(self.layout)
+
+            # ! hazi string misto widget
+            self.HomeView.categories["category" + category.getUUID()] = self.categoryWidget
+
+
+            self.HomeView.setupUi(self.MainWindow)
 
 
     def setPassword(self, password: str) -> None:

@@ -9,6 +9,7 @@ class HomeView(object):
 
     def __init__(self) -> None:
         self.games = {}
+        self.categories = {}
 
 
     def setupUi(self, MainWindow):        
@@ -234,30 +235,23 @@ class HomeView(object):
 
         self.ctgrInfo = QWidget(self.mainBodyContent)
         self.ctgrInfo.setObjectName(u"ctgrInfo")
+
         self.Categories = QLabel(self.ctgrInfo)
         self.Categories.setObjectName(u"Categories")
         self.Categories.setGeometry(QRect(10, 10, 111, 41))
         self.Categories.setFont(font2)
         self.Categories.setStyleSheet(u"color: #FEFEFE")
-        # self.addCtgrBtn = QPushButton(self.ctgrInfo)
-        # self.addCtgrBtn.setObjectName(u"addCtgrBtn")
-        # self.addCtgrBtn.setMinimumSize(QSize(150, 30))
-        # self.addCtgrBtn.setMaximumSize(QSize(150, 30))
-        # self.addCtgrBtn.setGeometry(280, 10, 170, 30)
-        # self.addCtgrBtn.setFont(font1)
-        # self.addCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-        # icon8 = QIcon()
-        # icon8.addFile(u"assets/icons/plus-square.svg", QSize(), QIcon.Normal, QIcon.Off)
-        # self.addCtgrBtn.setIcon(icon8)
-        # self.addCtgrBtn.setIconSize(QSize(24, 24))
+
         self.rmvCtgrBtn = QPushButton(self.ctgrInfo)
         self.rmvCtgrBtn.setObjectName(u"rmvCtgrBtn")
         self.rmvCtgrBtn.setGeometry(QRect(480, 10, 170, 30))
         self.rmvCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
+
         sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.rmvCtgrBtn.sizePolicy().hasHeightForWidth())
+
         self.rmvCtgrBtn.setSizePolicy(sizePolicy2)
         self.rmvCtgrBtn.setMinimumSize(QSize(170, 30))
         self.rmvCtgrBtn.setMaximumSize(QSize(150, 30))
@@ -273,6 +267,10 @@ class HomeView(object):
         self.tabWidget_2 = QTabWidget(self.ctgrBox)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
         self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
+        
+        for category in self.categories:
+             print(type(category))
+             self.tabWidget_2.addTab(QWidget(), "Nazev")
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 
