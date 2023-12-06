@@ -49,6 +49,10 @@ class Ui_MainWindow(object):
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
 
+
+        ## ZDE
+        self.HomeView.tabWidget_2.currentIndex
+
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
         self.LockedScreenView.setupUi(self.MainWindow)
