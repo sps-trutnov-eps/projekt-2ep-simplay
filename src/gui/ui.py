@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
-
+        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_manager))    
 
         ## ZDE
         self.HomeView.tabWidget_2.currentIndex
