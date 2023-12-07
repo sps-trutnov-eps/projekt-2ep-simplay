@@ -242,6 +242,21 @@ class HomeView(object):
         self.Categories.setFont(font2)
         self.Categories.setStyleSheet(u"color: #FEFEFE")
 
+        #  Tlačítko pro přidávání her v kategoriích
+
+        self.addCtgrBtn = QPushButton(self.ctgrInfo)
+        self.addCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.addCtgrBtn.setObjectName(u"addCtgrBtn")
+        self.addCtgrBtn.setMinimumSize(QSize(150, 30))
+        self.addCtgrBtn.setMaximumSize(QSize(150, 30))
+        self.addCtgrBtn.setGeometry(280, 10, 170, 30)
+        self.addCtgrBtn.setFont(font1)
+        self.addCtgrBtn.setIcon(icon6)
+        self.addCtgrBtn.setIconSize(QSize(24, 24))
+        self.addCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+
+        # konec
+
         self.rmvCtgrBtn = QPushButton(self.ctgrInfo)
         self.rmvCtgrBtn.setObjectName(u"rmvCtgrBtn")
         self.rmvCtgrBtn.setGeometry(QRect(480, 10, 170, 30))
@@ -306,7 +321,7 @@ class HomeView(object):
         self.Games.setText(QCoreApplication.translate("MainWindow", u"Hry", None))
         self.addGameBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
-        #self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
-        self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"P\u0159idat slo\u017eku", None))
+        self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
+        self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
 
     # retranslateUi
