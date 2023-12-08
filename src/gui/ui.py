@@ -7,6 +7,7 @@ from Obj.game import *
 from Obj.security import *
 from Obj.time import *
 from Obj.category import *
+from Obj.add_game_to_category import *
 
 class Ui_MainWindow(object):
 
@@ -28,6 +29,7 @@ class Ui_MainWindow(object):
         self.HomeView = HomeView()
         game_manager = GameManager()
         category_manager = CategoryManager(game_manager)
+        game_category_manager = GameCtgrManager()
 
         # Adding default games to list
 
@@ -42,13 +44,14 @@ class Ui_MainWindow(object):
 
         self.fillGamesWidget(game_manager)
         self.fillCategoriesWidget(category_manager)
+        self.fillGamesWidget(game_category_manager)
 
         self.HomeView.setupUi(self.MainWindow)
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
-        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_manager))    
+        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))    
 
         ## ZDE
         self.HomeView.tabWidget_2.currentIndex
@@ -180,6 +183,48 @@ class Ui_MainWindow(object):
 
 
             self.HomeView.categories[category.getName()] = categoryWidget
+
+    def fillGamesCategoryWidget(self, game_category_manager: GameManager) -> None:
+        self.gameFont = QFont()
+        self.gameFont.setFamily(u"Segoe UI")
+        self.gameFont.setPointSize(12)
+
+        self.gameSubFont = QFont()
+        self.gameSubFont.setFamily(u"Segoe UI")
+        self.gameSubFont.setPointSize(10)
+
+        for game in game_category_manager.getGames():
+            self.game = QWidget()
+            self.game.setStyleSheet(u"background-color: #28262C")
+            self.game.setMaximumWidth(100)
+            self.game.setMinimumHeight(130)
+            self.game.setContentsMargins(QMargins(5, 5, 5, 5))
+            self.game.setCursor(QCursor(Qt.PointingHandCursor))
+
+            self.layout = QVBoxLayout(self.game)
+            self.title = QLabel(self.game)
+            self.title.setText(game.getName())
+            self.title.setFont(self.gameFont)
+            self.title.setStyleSheet(u"color: #FEFEFE")
+            self.layout.addWidget(self.title)
+            self.subtitle = QLabel(self.game)
+            self.subtitle.setText(game.getUUID())
+            self.subtitle.setFont(self.gameSubFont)
+            self.subtitle.setStyleSheet(u"color: #28262C")
+            self.layout.addWidget(self.subtitle)
+
+            self.button = QPushButton(self.game)
+            self.button.setText("Spustit")
+            self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+            self.layout.addWidget(self.button)
+            self.button.clicked.connect(game.run)
+
+            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.game.setLayout(self.layout)
+
+            self.HomeView.games["game" + game.getUUID()] = self.game
+
+
 
 
     def setPassword(self, password: str) -> None:

@@ -1,3 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <categories>
+  <category uuid="1">
+    <name>asd</name>
+    <games>
+    </games>
+  </category>
+  <game uuid="2">
+    <name>main.py</name>
+    <path>C:/Users/hajny/Lukyn/Github/projekt-2ep-t08/src/main.py</path>
+  </game>
 </categories>
