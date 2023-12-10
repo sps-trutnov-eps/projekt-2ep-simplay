@@ -1,7 +1,7 @@
 from lxml import etree
 
-from Obj.category import Category
-from Obj.game import *
+from obj.category import Category
+from obj.game import *
 
 class CategoryManager:
 
@@ -38,7 +38,7 @@ class CategoryManager:
 
     def getCategoryByUUID(self, uuid: int) -> Category:
         for category in self.categories:
-            if (category.getUUID() == uuid):
+            if (int(category.getUUID()) == uuid):
                 return category
 
     def addCategory(self, name: str) -> None:
