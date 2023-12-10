@@ -1,12 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <categories>
-  <category uuid="1">
-    <name>asd</name>
-    <games>
-    </games>
-  </category>
+  <game uuid="1">
+    <name>main.py</name>
+    <path>C:/Users/hajny/Lukyn/Github/projekt-2ep-t08/src/main.py</path>
+  </game>
   <game uuid="2">
     <name>main.py</name>
     <path>C:/Users/hajny/Lukyn/Github/projekt-2ep-t08/src/main.py</path>
+  </game>
+  <game uuid="2">
+    <name>main.py</name>
+    <path>C:/Users/hajny/Lukyn/Github/projekt-2ep-t08/src/main.py</path>
+  </game>
+  <game uuid="3">
+    <name>encoding_manager.py</name>
+    <path>C:/Users/hajny/Lukyn/Github/projekt-2ep-t08/src/Obj/security/encoding_manager.py</path>
   </game>
 </categories>

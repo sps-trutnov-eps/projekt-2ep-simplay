@@ -184,7 +184,7 @@ class Ui_MainWindow(object):
 
             self.HomeView.categories[category.getName()] = categoryWidget
 
-    def fillGamesCategoryWidget(self, game_category_manager: GameManager) -> None:
+    def fillGamesCategoryWidget(self, game_category_manager: GameCtgrManager) -> None:
         self.gameFont = QFont()
         self.gameFont.setFamily(u"Segoe UI")
         self.gameFont.setPointSize(12)
