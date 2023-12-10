@@ -288,10 +288,10 @@ class HomeView(object):
              self.tabWidget_2.addTab(self.categories[category], category)
 
 
-        self.ctgrGameLayout = QHBoxLayout(self.ctgrInfo)
+        # self.ctgrGameLayout = QHBoxLayout(self.ctgrBox)
 
-        for ctgr_game in self.ctgr_games:
-             self.ctgrGameLayout.addWidget(self.ctgr_games[ctgr_game], ctgr_game)
+        # for ctgr_game in self.ctgr_games:
+        #      self.ctgrGameLayout.addWidget(self.ctgr_games[ctgr_game])
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 
