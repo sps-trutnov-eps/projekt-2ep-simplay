@@ -36,7 +36,7 @@ class EncodingManager:
         for symbol in cypher:
             if (symbol == '-'):
                 upper = True
-                continue                
+                continue
             
             if (symbol == '\n'):
                 break
