@@ -3,11 +3,10 @@ from qtpy.QtCore import *
 import os
 
 from gui.views import *
-from Obj.game import *
-from Obj.security import *
-from Obj.time import *
-from Obj.category import *
-from Obj.add_game_to_category import *
+from obj.game import *
+from obj.security import *
+from obj.time import *
+from obj.category import *
 
 class Ui_MainWindow(object):
 
@@ -29,8 +28,6 @@ class Ui_MainWindow(object):
         self.HomeView = HomeView()
         game_manager = GameManager()
         category_manager = CategoryManager(game_manager)
-        game_category_manager = GameCtgrManager()
-
         # Adding default games to list
 
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
@@ -44,17 +41,22 @@ class Ui_MainWindow(object):
 
         self.fillGamesWidget(game_manager)
         self.fillCategoriesWidget(category_manager)
-        self.fillGamesWidget(game_category_manager)
+
+        
 
         self.HomeView.setupUi(self.MainWindow)
+
+        games_menu = QMenu()
+        for game in game_manager.getGames():
+            name = game.getName()
+            games_menu.addAction(name, lambda: category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex()).addGame(game))
+            
+        self.HomeView.addCtgrBtn.setMenu(games_menu)
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
-        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))    
-
-        ## ZDE
-        self.HomeView.tabWidget_2.currentIndex
+        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
 
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
@@ -183,48 +185,6 @@ class Ui_MainWindow(object):
 
 
             self.HomeView.categories[category.getName()] = categoryWidget
-
-
-
-    def fillGamesCategoryWidget(self, game_category_manager: GameCtgrManager) -> None:
-        self.ctgrGameFont = QFont()
-        self.ctgrGameFont.setFamily(u"Segoe UI")
-        self.ctgrGameFont.setPointSize(12)
-
-        self.ctgrGameSubFont = QFont()
-        self.ctgrGameSubFont.setFamily(u"Segoe UI")
-        self.ctgrGameSubFont.setPointSize(10)
-
-        for ctgrGame in game_category_manager.getGames():
-            self.ctgrGame = QWidget()
-            self.ctgrGame.setStyleSheet(u"background-color: #28262C")
-            self.ctgrGame.setMaximumWidth(100)
-            self.ctgrGame.setMinimumHeight(130)
-            self.ctgrGame.setContentsMargins(QMargins(5, 5, 5, 5))
-            self.ctgrGame.setCursor(QCursor(Qt.PointingHandCursor))
-
-            self.ctgrLayout = QVBoxLayout(self.ctgrGame)
-            self.ctgrTitle = QLabel(self.ctgrGame)
-            self.ctgrTitle.setText(ctgrGame.getName())
-            self.ctgrTitle.setFont(self.ctgrGameFont)
-            self.ctgrTitle.setStyleSheet(u"color: #FEFEFE")
-            self.ctgrLayout.addWidget(self.ctgrTitle)
-            self.ctgrSubTitle = QLabel(self.ctgrGame)
-            self.ctgrSubTitle.setText(ctgrGame.getUUID())
-            self.ctgrSubTitle.setFont(self.ctgrGameSubFont)
-            self.ctgrSubTitle.setStyleSheet(u"color: #28262C")
-            self.ctgrLayout.addWidget(self.ctgrSubTitle)
-
-            self.ctgrButton = QPushButton(self.ctgrGame)
-            self.ctgrButton.setText("Spustit")
-            self.ctgrButton.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-            self.ctgrLayout.addWidget(self.ctgrButton)
-            self.ctgrButton.clicked.connect(ctgrGame.run)
-
-            self.ctgrLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.ctgrGame.setLayout(self.ctgrLayout)
-
-            self.HomeView.ctgr_games["game" + ctgrGame.getUUID()] = self.ctgrGame
 
 
 

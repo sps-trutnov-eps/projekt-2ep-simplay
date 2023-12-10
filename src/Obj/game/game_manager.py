@@ -1,6 +1,6 @@
 from lxml import etree
 
-from Obj.game import Game
+from obj.game import Game
 
 
 class GameManager:

@@ -1,4 +1,5 @@
 from qtpy.QtWidgets import *
+from qtpy.QtWidgets import QMenu
 from qtpy.QtCore import *
 from qtpy.QtGui import *
 
