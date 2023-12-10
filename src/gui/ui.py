@@ -3,10 +3,10 @@ from qtpy.QtCore import *
 import os
 
 from gui.views import *
-from Obj.game import *
-from Obj.security import *
-from Obj.time import *
-from Obj.category import *
+from obj.game import *
+from obj.security import *
+from obj.time import *
+from obj.category import *
 
 class Ui_MainWindow(object):
 

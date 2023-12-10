@@ -1,7 +1,7 @@
 from lxml import etree
 
-from Obj.category import Category
-from Obj.game import *
+from obj.category import Category
+from obj.game import *
 
 class CategoryManager:
 
