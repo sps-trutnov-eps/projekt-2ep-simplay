@@ -1,4 +1,4 @@
-from obj.game import Game
+from Obj.game import Game
 
 
 class Category:

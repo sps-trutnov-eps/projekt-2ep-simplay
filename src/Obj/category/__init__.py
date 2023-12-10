@@ -1,5 +1,5 @@
-from obj.category.category import Category
-from obj.category.category_manager import CategoryManager
+from Obj.category.category import Category
+from Obj.category.category_manager import CategoryManager
 
 __ALL__ = [
     "Category"
