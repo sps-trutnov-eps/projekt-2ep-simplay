@@ -1,13 +1,13 @@
 from lxml import etree
 
-from Obj.game import Game
+from Obj.add_game_to_category.game_ctgr import GameCtgr
 
 
-class GameManager:
+class GameCtgrManager:
 
     def __init__(self) -> None:
         parser = etree.XMLParser(remove_blank_text=True)
-        self.xml_tree = etree.parse("data/games.xml", parser)
+        self.xml_tree = etree.parse("data/categories.xml", parser)
         self.xml_root = self.xml_tree.getroot()
 
         self.games = []
@@ -19,18 +19,18 @@ class GameManager:
     def loadGames(self) -> None:
         uuid, name, path = "", "", ""                                                                                   # Adding data from the file to the list
         
-        for child in self.xml_root:
+        for child in self.xml_root:                                                                                     
             uuid = child.attrib["uuid"]
             name = child[0].text
             path = child[1].text
 
-            game = Game(uuid, name, path)
+            game = GameCtgr(uuid, name, path)
             self.games.append(game)
 
-    def getGames(self) -> list[Game]:
+    def getGames(self) -> list[GameCtgr]:
         return self.games
 
-    def getGameByUUID(self, uuid: int) -> Game:
+    def getGameByUUID(self, uuid: int) -> GameCtgr:
         for game in self.games:
             if (game.getUUID() == uuid):
                 return game
@@ -40,7 +40,7 @@ class GameManager:
 
         self.__saveXMLGame(uuid, name, path)
 
-        game = Game(uuid, name, path)                                                                                   # Adding changes to active list
+        game = GameCtgr(uuid, name, path)                                                                                   # Adding changes to active list
         self.games.append(game)
 
     def removeGame(self, uuid: str) -> None:
@@ -60,14 +60,14 @@ class GameManager:
 
     def __saveXMLGame(self, uuid: str, name: str, path: str) -> None:
         self.xml_root.append(self.__createGameXML(uuid, name, path))                                                    # Adding changes to the file
-        with open("data/games.xml", "wb") as f:
+        with open("data/categories.xml", "wb") as f:
             f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
     def __removeXMLGame(self, uuid) -> None:
         for game in self.xml_tree.xpath(str.format("//game[@uuid=\"{0}\"]", uuid)):                                     # Removing the game from xml
             game.getparent().remove(game)
 
-        with open("data/games.xml", "wb") as f:
+        with open("data/categories.xml", "wb") as f:
             f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
     def __createGameXML(self, uuid: str, name: str, path: str) -> etree.Element:                                        # Creating new XML for game record

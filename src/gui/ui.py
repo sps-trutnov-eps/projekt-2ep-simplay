@@ -3,10 +3,11 @@ from qtpy.QtCore import *
 import os
 
 from gui.views import *
-from obj.game import *
-from obj.security import *
-from obj.time import *
-from obj.add_category import *
+from Obj.game import *
+from Obj.security import *
+from Obj.time import *
+from Obj.category import *
+from Obj.add_game_to_category import *
 
 class Ui_MainWindow(object):
 
@@ -27,27 +28,33 @@ class Ui_MainWindow(object):
     def setupHomeView(self) -> None:
         self.HomeView = HomeView()
         game_manager = GameManager()
+        category_manager = CategoryManager(game_manager)
+        game_category_manager = GameCtgrManager()
 
         # Adding default games to list
 
-        # ! Prostě to nechce fungovat?
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
         game_manager.games.append(game1)
 
-        # ! Prostě to nechce fungovat?
         game2 = Game("1", "TicTacToe", "data\\tictactoe.exe")
         game_manager.games.append(game2)
 
-        # Jsem kouzelník a funguju
         game3 = Game("2", "Hangman", "data\hangman.exe")
         game_manager.games.append(game3)
 
         self.fillGamesWidget(game_manager)
+        self.fillCategoriesWidget(category_manager)
+        self.fillGamesWidget(game_category_manager)
 
         self.HomeView.setupUi(self.MainWindow)
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
+        self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
+        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))    
+
+        ## ZDE
+        self.HomeView.tabWidget_2.currentIndex
 
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
@@ -79,14 +86,14 @@ class Ui_MainWindow(object):
             game_manager.addGame(name, path)
             self.setupHomeView()
 
-    def addCategory(self, category_manager) -> None:
-        path = QFileDialog.getOpenFileName()
-        path = path[0]
+    def addCategory(self, category_manager: CategoryManager) -> None:
+        name = QInputDialog.getText(self.HomeView.centralwidget, "Přidat kategorii", "Název kategorie")
+        name = name[0]
         
-        if (type(path) == str and len(path) > 0):
-            name = os.path.basename(path)
-            category_manager.addCategory(name, path)
-            self.setupHomeView()
+        if (len(name) > 0):
+            category_manager.addCategory(name)
+
+        self.setupHomeView()
 
 
     def fillGamesWidget(self, game_manager: GameManager) -> None:
@@ -130,48 +137,96 @@ class Ui_MainWindow(object):
             self.HomeView.games["game" + game.getUUID()] = self.game
 
 
-    def fillCategoriesWidget(self, add_category: CategoryManager) -> None:
-        self.categoryFont = QFont()
-        self.categoryFont.setFamily(u"Segoe UI")
-        self.categoryFont.setPointSize(12)
+    def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
+        for category in category_manager.getCategories():
+            categoryWidget = QWidget()
+            categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
-        self.categorySubFont = QFont()
-        self.categorySubFont.setFamily(u"Segoe UI")
-        self.categorySubFont.setPointSize(10)
+            for game in category.getGames():
+                gameWidget = QWidget(categoryWidget)                                       # Main game widget
+                gameWidget.setStyleSheet(u"background-color: #28262C")
+                gameWidget.setMaximumWidth(100)
+                gameWidget.setMinimumHeight(130)
+                gameWidget.setContentsMargins(QMargins(5, 5, 5, 5))
+                gameWidget.setCursor(QCursor(Qt.PointingHandCursor))
+                
+                layout = QVBoxLayout(gameWidget)
 
-        for category in add_category.getCategories():
-            self.category = QWidget()
-            self.category.setStyleSheet(u"background-color: #28262C")
-            self.category.setMaximumWidth(100)
-            self.category.setMinimumHeight(130)
-            self.category.setContentsMargins(QMargins(5, 5, 5, 5))
-            self.category.setCursor(QCursor(Qt.PointingHandCursor))
 
-            self.layout = QVBoxLayout(self.category)
-            self.title = QLabel(self.category)
-            self.title.setText(category.getName())
-            self.title.setFont(self.categoryFont)
-            self.title.setStyleSheet(u"color: #FEFEFE")
-            self.layout.addWidget(self.title)
-            self.subtitle = QLabel(self.category)
-            self.subtitle.setText(category.getUUID())
-            self.subtitle.setFont(self.categorySubFont)
-            self.subtitle.setStyleSheet(u"color: #28262C")
-            self.layout.addWidget(self.subtitle)
+                title = QLabel(gameWidget)
+                title.setText(game.getName())
+                title.setFont(self.gameFont)
+                title.setStyleSheet(u"color: #FEFEFE")
+                layout.addWidget(title)
+                
+                subtitle = QLabel(gameWidget)
+                subtitle.setText(game.getUUID())
+                subtitle.setFont(self.gameSubFont)
+                subtitle.setStyleSheet(u"color: #28262C")
+                layout.addWidget(subtitle)
 
-            self.button = QPushButton(self.category)
-            self.button.setText("Zobrazit")
-            self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-            self.layout.addWidget(self.button)
+            
+                button = QPushButton(gameWidget)
+                button.setText("Spustit")
+                button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+                layout.addWidget(button)
+                button.clicked.connect(game.run)
 
-            #self.button.clicked.connect(game.run)
 
-            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.category.setLayout(self.layout)
+                layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                game.setLayout(layout)
 
-            # self.HomeView.games["game" + game.getUUID()] = self.category
-            # Atd.
-        
+
+
+                categoryWidgetLayout.addWidget(gameWidget)
+            # Game
+
+
+            self.HomeView.categories[category.getName()] = categoryWidget
+
+
+
+    def fillGamesCategoryWidget(self, game_category_manager: GameCtgrManager) -> None:
+        self.ctgrGameFont = QFont()
+        self.ctgrGameFont.setFamily(u"Segoe UI")
+        self.ctgrGameFont.setPointSize(12)
+
+        self.ctgrGameSubFont = QFont()
+        self.ctgrGameSubFont.setFamily(u"Segoe UI")
+        self.ctgrGameSubFont.setPointSize(10)
+
+        for ctgrGame in game_category_manager.getGames():
+            self.ctgrGame = QWidget()
+            self.ctgrGame.setStyleSheet(u"background-color: #28262C")
+            self.ctgrGame.setMaximumWidth(100)
+            self.ctgrGame.setMinimumHeight(130)
+            self.ctgrGame.setContentsMargins(QMargins(5, 5, 5, 5))
+            self.ctgrGame.setCursor(QCursor(Qt.PointingHandCursor))
+
+            self.ctgrLayout = QVBoxLayout(self.ctgrGame)
+            self.ctgrTitle = QLabel(self.ctgrGame)
+            self.ctgrTitle.setText(ctgrGame.getName())
+            self.ctgrTitle.setFont(self.ctgrGameFont)
+            self.ctgrTitle.setStyleSheet(u"color: #FEFEFE")
+            self.ctgrLayout.addWidget(self.ctgrTitle)
+            self.ctgrSubTitle = QLabel(self.ctgrGame)
+            self.ctgrSubTitle.setText(ctgrGame.getUUID())
+            self.ctgrSubTitle.setFont(self.ctgrGameSubFont)
+            self.ctgrSubTitle.setStyleSheet(u"color: #28262C")
+            self.ctgrLayout.addWidget(self.ctgrSubTitle)
+
+            self.ctgrButton = QPushButton(self.ctgrGame)
+            self.ctgrButton.setText("Spustit")
+            self.ctgrButton.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+            self.ctgrLayout.addWidget(self.ctgrButton)
+            self.ctgrButton.clicked.connect(ctgrGame.run)
+
+            self.ctgrLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.ctgrGame.setLayout(self.ctgrLayout)
+
+            self.HomeView.ctgr_games["game" + ctgrGame.getUUID()] = self.ctgrGame
+
+
 
 
     def setPassword(self, password: str) -> None:

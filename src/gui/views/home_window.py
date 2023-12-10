@@ -9,6 +9,8 @@ class HomeView(object):
 
     def __init__(self) -> None:
         self.games = {}
+        self.categories = {}
+        self.ctgr_games = {}
 
 
     def setupUi(self, MainWindow):        
@@ -130,6 +132,7 @@ class HomeView(object):
         self.timeBtn.setIcon(icon)
         self.timeBtn.setIconSize(QSize(24, 24))
         self.timeBtn.setStyleSheet(u"color: #FEFEFE")
+        self.timeBtn.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_3.addWidget(self.timeBtn)
 
@@ -233,29 +236,38 @@ class HomeView(object):
 
         self.ctgrInfo = QWidget(self.mainBodyContent)
         self.ctgrInfo.setObjectName(u"ctgrInfo")
+
         self.Categories = QLabel(self.ctgrInfo)
         self.Categories.setObjectName(u"Categories")
         self.Categories.setGeometry(QRect(10, 10, 111, 41))
         self.Categories.setFont(font2)
         self.Categories.setStyleSheet(u"color: #FEFEFE")
-        # self.addCtgrBtn = QPushButton(self.ctgrInfo)
-        # self.addCtgrBtn.setObjectName(u"addCtgrBtn")
-        # self.addCtgrBtn.setMinimumSize(QSize(150, 30))
-        # self.addCtgrBtn.setMaximumSize(QSize(150, 30))
-        # self.addCtgrBtn.setGeometry(280, 10, 170, 30)
-        # self.addCtgrBtn.setFont(font1)
-        # self.addCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-        # icon8 = QIcon()
-        # icon8.addFile(u"assets/icons/plus-square.svg", QSize(), QIcon.Normal, QIcon.Off)
-        # self.addCtgrBtn.setIcon(icon8)
-        # self.addCtgrBtn.setIconSize(QSize(24, 24))
+
+        #  Tlačítko pro přidávání her v kategoriích
+
+        self.addCtgrBtn = QPushButton(self.ctgrInfo)
+        self.addCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
+        self.addCtgrBtn.setObjectName(u"addCtgrBtn")
+        self.addCtgrBtn.setMinimumSize(QSize(150, 30))
+        self.addCtgrBtn.setMaximumSize(QSize(150, 30))
+        self.addCtgrBtn.setGeometry(280, 10, 170, 30)
+        self.addCtgrBtn.setFont(font1)
+        self.addCtgrBtn.setIcon(icon6)
+        self.addCtgrBtn.setIconSize(QSize(24, 24))
+        self.addCtgrBtn.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+
+        # konec
+
         self.rmvCtgrBtn = QPushButton(self.ctgrInfo)
         self.rmvCtgrBtn.setObjectName(u"rmvCtgrBtn")
         self.rmvCtgrBtn.setGeometry(QRect(480, 10, 170, 30))
+        self.rmvCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
+
         sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.rmvCtgrBtn.sizePolicy().hasHeightForWidth())
+
         self.rmvCtgrBtn.setSizePolicy(sizePolicy2)
         self.rmvCtgrBtn.setMinimumSize(QSize(170, 30))
         self.rmvCtgrBtn.setMaximumSize(QSize(150, 30))
@@ -271,6 +283,15 @@ class HomeView(object):
         self.tabWidget_2 = QTabWidget(self.ctgrBox)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
         self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
+        
+        for category in self.categories:
+             self.tabWidget_2.addTab(self.categories[category], category)
+
+
+        # self.ctgrGameLayout = QHBoxLayout(self.ctgrBox)
+
+        # for ctgr_game in self.ctgr_games:
+        #      self.ctgrGameLayout.addWidget(self.ctgr_games[ctgr_game])
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 
@@ -307,7 +328,7 @@ class HomeView(object):
         self.Games.setText(QCoreApplication.translate("MainWindow", u"Hry", None))
         self.addGameBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
         self.Categories.setText(QCoreApplication.translate("MainWindow", u"Slo\u017eky", None))
-        #self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"Odebrat slo\u017eku", None))
-        self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u"P\u0159idat slo\u017eku", None))
+        self.addCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat hru", None))
+        self.rmvCtgrBtn.setText(QCoreApplication.translate("MainWindow", u" P\u0159idat slo\u017eku", None))
 
     # retranslateUi

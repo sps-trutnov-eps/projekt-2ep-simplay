@@ -1,5 +1,5 @@
-from obj.game.game import Game
-from obj.game.game_manager import GameManager
+from Obj.game.game import Game
+from Obj.game.game_manager import GameManager
 
 __ALL__ = [
     "Game",
