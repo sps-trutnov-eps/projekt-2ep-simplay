@@ -10,6 +10,7 @@ class HomeView(object):
     def __init__(self) -> None:
         self.games = {}
         self.categories = {}
+        self.ctgr_games = {}
 
 
     def setupUi(self, MainWindow):        
@@ -285,6 +286,12 @@ class HomeView(object):
         
         for category in self.categories:
              self.tabWidget_2.addTab(self.categories[category], category)
+
+
+        self.ctgrGameLayout = QHBoxLayout(self.ctgrInfo)
+
+        for ctgr_game in self.ctgr_games:
+             self.ctgrGameLayout.addWidget(self.ctgr_games[ctgr_game], ctgr_game)
 
         self.verticalLayout_5.addWidget(self.ctgrBox)
 

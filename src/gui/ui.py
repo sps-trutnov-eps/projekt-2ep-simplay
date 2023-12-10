@@ -184,45 +184,47 @@ class Ui_MainWindow(object):
 
             self.HomeView.categories[category.getName()] = categoryWidget
 
+
+
     def fillGamesCategoryWidget(self, game_category_manager: GameCtgrManager) -> None:
-        self.gameFont = QFont()
-        self.gameFont.setFamily(u"Segoe UI")
-        self.gameFont.setPointSize(12)
+        self.ctgrGameFont = QFont()
+        self.ctgrGameFont.setFamily(u"Segoe UI")
+        self.ctgrGameFont.setPointSize(12)
 
-        self.gameSubFont = QFont()
-        self.gameSubFont.setFamily(u"Segoe UI")
-        self.gameSubFont.setPointSize(10)
+        self.ctgrGameSubFont = QFont()
+        self.ctgrGameSubFont.setFamily(u"Segoe UI")
+        self.ctgrGameSubFont.setPointSize(10)
 
-        for game in game_category_manager.getGames():
-            self.game = QWidget()
-            self.game.setStyleSheet(u"background-color: #28262C")
-            self.game.setMaximumWidth(100)
-            self.game.setMinimumHeight(130)
-            self.game.setContentsMargins(QMargins(5, 5, 5, 5))
-            self.game.setCursor(QCursor(Qt.PointingHandCursor))
+        for ctgrGame in game_category_manager.getGames():
+            self.ctgrGame = QWidget()
+            self.ctgrGame.setStyleSheet(u"background-color: #28262C")
+            self.ctgrGame.setMaximumWidth(100)
+            self.ctgrGame.setMinimumHeight(130)
+            self.ctgrGame.setContentsMargins(QMargins(5, 5, 5, 5))
+            self.ctgrGame.setCursor(QCursor(Qt.PointingHandCursor))
 
-            self.layout = QVBoxLayout(self.game)
-            self.title = QLabel(self.game)
-            self.title.setText(game.getName())
-            self.title.setFont(self.gameFont)
-            self.title.setStyleSheet(u"color: #FEFEFE")
-            self.layout.addWidget(self.title)
-            self.subtitle = QLabel(self.game)
-            self.subtitle.setText(game.getUUID())
-            self.subtitle.setFont(self.gameSubFont)
-            self.subtitle.setStyleSheet(u"color: #28262C")
-            self.layout.addWidget(self.subtitle)
+            self.ctgrLayout = QVBoxLayout(self.ctgrGame)
+            self.ctgrTitle = QLabel(self.ctgrGame)
+            self.ctgrTitle.setText(ctgrGame.getName())
+            self.ctgrTitle.setFont(self.ctgrGameFont)
+            self.ctgrTitle.setStyleSheet(u"color: #FEFEFE")
+            self.ctgrLayout.addWidget(self.ctgrTitle)
+            self.ctgrSubTitle = QLabel(self.ctgrGame)
+            self.ctgrSubTitle.setText(ctgrGame.getUUID())
+            self.ctgrSubTitle.setFont(self.ctgrGameSubFont)
+            self.ctgrSubTitle.setStyleSheet(u"color: #28262C")
+            self.ctgrLayout.addWidget(self.ctgrSubTitle)
 
-            self.button = QPushButton(self.game)
-            self.button.setText("Spustit")
-            self.button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
-            self.layout.addWidget(self.button)
-            self.button.clicked.connect(game.run)
+            self.ctgrButton = QPushButton(self.ctgrGame)
+            self.ctgrButton.setText("Spustit")
+            self.ctgrButton.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+            self.ctgrLayout.addWidget(self.ctgrButton)
+            self.ctgrButton.clicked.connect(ctgrGame.run)
 
-            self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.game.setLayout(self.layout)
+            self.ctgrLayout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.ctgrGame.setLayout(self.ctgrLayout)
 
-            self.HomeView.games["game" + game.getUUID()] = self.game
+            self.HomeView.ctgr_games["game" + ctgrGame.getUUID()] = self.ctgrGame
 
 
 
