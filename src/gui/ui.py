@@ -31,13 +31,13 @@ class Ui_MainWindow(object):
         # Adding default games to list
 
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
-        game_manager.games.append(game1)
+        game_manager.getGames().append(game1)
 
         game2 = Game("1", "TicTacToe", "data\\tictactoe.exe")
-        game_manager.games.append(game2)
+        game_manager.getGames().append(game2)
 
         game3 = Game("2", "Hangman", "data\hangman.exe")
-        game_manager.games.append(game3)
+        game_manager.getGames().append(game3)
 
         self.fillGamesWidget(game_manager)
         self.fillCategoriesWidget(category_manager)
@@ -49,7 +49,7 @@ class Ui_MainWindow(object):
         games_menu = QMenu()
         for game in game_manager.getGames():
             name = game.getName()
-            games_menu.addAction(name, lambda: category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex()).addGame(game))
+            games_menu.addAction(name, lambda: category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1).addGame(game))
             
         self.HomeView.addCtgrBtn.setMenu(games_menu)
         
@@ -144,6 +144,7 @@ class Ui_MainWindow(object):
             categoryWidget = QWidget()
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
+
             for game in category.getGames():
                 gameWidget = QWidget(categoryWidget)                                       # Main game widget
                 gameWidget.setStyleSheet(u"background-color: #28262C")
@@ -176,7 +177,7 @@ class Ui_MainWindow(object):
 
 
                 layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-                game.setLayout(layout)
+                gameWidget.setLayout(layout)
 
 
 

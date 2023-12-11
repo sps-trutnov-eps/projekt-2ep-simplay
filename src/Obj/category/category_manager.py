@@ -25,9 +25,8 @@ class CategoryManager:
             name = child[0].text
 
             for xml_game in child[1]:
-                uuid = xml_game.attrib["uuid"]
-
-                game = self.game_manager.getGameByUUID(uuid)
+                game_uuid = xml_game.attrib["uuid"]
+                game = self.game_manager.getGameByUUID(game_uuid)
                 games.append(game)
 
             category = Category(uuid, name, games)
@@ -38,13 +37,14 @@ class CategoryManager:
 
     def getCategoryByUUID(self, uuid: int) -> Category:
         for category in self.categories:
-            if (int(category.getUUID()) == uuid):
+            if (int(category.getUUID()) == int(uuid)):
                 return category
 
     def addCategory(self, name: str) -> None:
         uuid = str(self.getLastUUID() + 1)                                                                              # Creating UUID
 
-        self.__saveXMLCategory(uuid, name, [])
+        self.xml_root.append(self.__createCategoryXML(uuid, name, []))
+        self.save()
 
         category = Category(uuid, name)                                                                                   # Adding changes to active list
         self.categories.append(category)
@@ -58,10 +58,9 @@ class CategoryManager:
         return 0
 
 
-    def __saveXMLCategory(self, uuid: str, name: str, games: list[Game]) -> None:
-        self.xml_root.append(self.__createCategoryXML(uuid, name, games))                                                    # Adding changes to the file
+    def save(self) -> None:                                                    # Adding changes to the file
         with open("data/categories.xml", "wb") as f:
-            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True, method="html"))
 
     def __createCategoryXML(self, uuid: str, name: str, games: list[Game]) -> etree.Element:                                        # Creating new XML for game record
         xml_category = etree.SubElement(self.xml_root, "category")

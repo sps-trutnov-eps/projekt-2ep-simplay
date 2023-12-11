@@ -32,7 +32,7 @@ class GameManager:
 
     def getGameByUUID(self, uuid: int) -> Game:
         for game in self.games:
-            if (game.getUUID() == uuid):
+            if (int(game.getUUID()) == int(uuid)):
                 return game
 
     def addGame(self, name: str, path: str) -> None:
