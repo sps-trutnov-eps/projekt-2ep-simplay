@@ -17,10 +17,10 @@ class CategoryManager:
         self.loadCategories()
 
 
-    def loadCategories(self) -> None:
-        uuid, name, games = "", "" , []                                                                               # Adding data from the file to the list
-        
+    def loadCategories(self) -> None:        
         for child in self.xml_root:
+            uuid, name, games = "", "" , []
+
             uuid = child.attrib["uuid"]
             name = child[0].text
 

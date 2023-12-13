@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
         for game in game_manager.getGames():
             category = category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1)
 
-            games_menu.addAction(game.getName(), lambda current_game=game: self.addGame(current_game, category))
+            games_menu.addAction(game.getName(), lambda current_game=game: self.addGameToCategory(current_game, category))
             
         self.HomeView.addCtgrBtn.setMenu(games_menu)
         
@@ -143,6 +143,7 @@ class Ui_MainWindow(object):
 
     def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
         for category in category_manager.getCategories():
+            print(category.getGames())
             categoryWidget = QWidget()
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
@@ -158,7 +159,6 @@ class Ui_MainWindow(object):
 
 
                 title = QLabel(gameWidget)
-                print(category_manager.game_manager.getGames())
                 title.setText(game.getName())
                 title.setFont(self.gameFont)
                 title.setStyleSheet(u"color: #FEFEFE")
@@ -215,6 +215,7 @@ class Ui_MainWindow(object):
         self.setupLockedScreenView()
         return False
     
-    def addGame(self, game: Game, category: Category):
+    def addGameToCategory(self, game: Game, category: Category):
+        print(category.getUUID())
         category.addGame(game)
         self.setupHomeView()
