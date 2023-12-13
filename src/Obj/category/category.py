@@ -22,19 +22,17 @@ class Category:
         return self.games
 
     def addGame(self, game: Game) -> None:
-        print(game.getUUID())
-        if (int(game.getUUID()) > 2):
-            self.games.append(game)
-            games_element = self.xml_root.xpath("category[@uuid=" + self.uuid + "]/games")[0]
+        self.games.append(game)
+        games_element = self.xml_root.xpath("category[@uuid=" + self.uuid + "]/games")[0]
 
-            game_element = etree.SubElement(games_element, "game")
-            game_element.set("uuid", game.getUUID())
+        game_element = etree.SubElement(games_element, "game")
+        game_element.set("uuid", game.getUUID())
 
-            games_element.append(game_element)
+        games_element.append(game_element)
 
 
-            with open("data/categories.xml", "wb") as f:
-                f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True, method="html"))
+        with open("data/categories.xml", "wb") as f:
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True, method="html"))
 
     def getName(self) -> str:
         return self.name

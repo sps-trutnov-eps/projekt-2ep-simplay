@@ -18,7 +18,7 @@ class GameManager:
 
     def loadGames(self) -> None:
         uuid, name, path = "", "", ""                                                                                   # Adding data from the file to the list
-        
+
         for child in self.xml_root:
             uuid = child.attrib["uuid"]
             name = child[0].text

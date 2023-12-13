@@ -27,7 +27,6 @@ class Ui_MainWindow(object):
     def setupHomeView(self) -> None:
         self.HomeView = HomeView()
         game_manager = GameManager()
-        category_manager = CategoryManager(game_manager)
         # Adding default games to list
 
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
@@ -38,6 +37,8 @@ class Ui_MainWindow(object):
 
         game3 = Game("2", "Hangman", "data\hangman.exe")
         game_manager.getGames().append(game3)
+
+        category_manager = CategoryManager(game_manager)
 
         self.fillGamesWidget(game_manager)
         self.fillCategoriesWidget(category_manager)
@@ -56,7 +57,7 @@ class Ui_MainWindow(object):
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
-        self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
+        #self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
 
     def setupLockedScreenView(self) -> None:
         self.LockedScreenView = LockedScreenView()
@@ -144,7 +145,6 @@ class Ui_MainWindow(object):
             categoryWidget = QWidget()
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
-
             for game in category.getGames():
                 gameWidget = QWidget(categoryWidget)                                       # Main game widget
                 gameWidget.setStyleSheet(u"background-color: #28262C")
@@ -157,11 +157,14 @@ class Ui_MainWindow(object):
 
 
                 title = QLabel(gameWidget)
+                print(category_manager.game_manager.getGames())
                 title.setText(game.getName())
                 title.setFont(self.gameFont)
                 title.setStyleSheet(u"color: #FEFEFE")
                 layout.addWidget(title)
                 
+                
+
                 subtitle = QLabel(gameWidget)
                 subtitle.setText(game.getUUID())
                 subtitle.setFont(self.gameSubFont)
