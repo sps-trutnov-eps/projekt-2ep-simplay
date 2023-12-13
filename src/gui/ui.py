@@ -43,14 +43,15 @@ class Ui_MainWindow(object):
         self.fillGamesWidget(game_manager)
         self.fillCategoriesWidget(category_manager)
 
-        
+
 
         self.HomeView.setupUi(self.MainWindow)
 
         games_menu = QMenu()
         for game in game_manager.getGames():
-            name = game.getName()
-            games_menu.addAction(name, lambda: category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1).addGame(game))
+            category = category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1)
+
+            games_menu.addAction(str(game), lambda current_game=game: category.addGame(current_game))
             
         self.HomeView.addCtgrBtn.setMenu(games_menu)
         
