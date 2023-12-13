@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
         for game in game_manager.getGames():
             category = category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1)
 
-            games_menu.addAction(str(game), lambda current_game=game: category.addGame(current_game))
+            games_menu.addAction(game.getName(), lambda current_game=game: self.addGame(current_game, category))
             
         self.HomeView.addCtgrBtn.setMenu(games_menu)
         
@@ -214,3 +214,7 @@ class Ui_MainWindow(object):
 
         self.setupLockedScreenView()
         return False
+    
+    def addGame(self, game: Game, category: Category):
+        category.addGame(game)
+        self.setupHomeView()
