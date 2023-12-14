@@ -60,7 +60,7 @@ class CategoryManager:
 
     def save(self) -> None:                                                    # Adding changes to the file
         with open("data/categories.xml", "wb") as f:
-            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True, method="html"))
+            f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
     def __createCategoryXML(self, uuid: str, name: str, games: list[Game]) -> etree.Element:                                        # Creating new XML for game record
         xml_category = etree.SubElement(self.xml_root, "category")
