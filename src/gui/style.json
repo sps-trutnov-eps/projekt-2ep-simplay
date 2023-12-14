@@ -1,0 +1,19 @@
+{
+	"QMainWindow":[
+		{
+			"tittle":"Simplay",
+			"frameless": true,
+			"transluscentBg": true,
+			"sizeGrip": "size_grip",
+			"shadow":[
+				{
+					"color": "#0000",
+					"blurRadius": 20,
+					"xOffset": 5,
+					"yOffset": 5,
+					"centralWidget": "centralwidget"
+				}
+			]
+		}
+	]
+}

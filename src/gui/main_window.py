@@ -1,10 +1,19 @@
-class MainWindow(Ui_MainWindow):
+from Custom_Widgets import *
+
+from gui.ui import Ui_MainWindow
+
+
+class MainWindow(QMainWindow):
     
     def __init__(self) -> None:
-        super().__init__(self)
+        QMainWindow.__init__(self)
+        self.ui = Ui_MainWindow(self)
 
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
-        self.setMinimumSize(600, 400)
-        self.init_gui()
+        loadJsonStyle(self, self.ui, jsonFiles = {
+            "gui/style.json"
+        })
+
         self.show()
+
+        #self.insert.clicked.connect(self.insertTab)
+        #self.remove.clicked.connect(self.removeTab)

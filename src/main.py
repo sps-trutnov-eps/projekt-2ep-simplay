@@ -1,7 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QApplication
+from Custom_Widgets import *
 
-from gui.window import Window
+from gui.main_window import MainWindow
+from obj.time import TimeCount
 
 
 app = QApplication(sys.argv)
@@ -9,6 +10,8 @@ app.setApplicationName("Simplay")
 app.setOrganizationName('SPŠ Trutnov')
 app.setOrganizationDomain("https://spstrutnov.cz/")
 
-window = Window()
+window = MainWindow()
 
+time_count = TimeCount()
 app.exec_()
+time_count.end()
