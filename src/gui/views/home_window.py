@@ -181,7 +181,7 @@ class HomeView(object):
         self.Games.setStyleSheet(u"color: #FEFEFE")
         self.addGameBtn = QPushButton(self.gameInfo)
         self.addGameBtn.setObjectName(u"addGameBtn")
-        self.addGameBtn.setGeometry(QRect(500, 10, 150, 30))
+        self.addGameBtn.setGeometry(QRect(800, 10, 150, 30))
         self.addGameBtn.setMinimumSize(QSize(150, 30))
         self.addGameBtn.setMaximumSize(QSize(150, 30))
         self.addGameBtn.setFont(font1)
@@ -203,7 +203,7 @@ class HomeView(object):
 
         
         self.widgetScroll = QScrollArea(self.gameBox)
-        self.widgetScroll.setGeometry(0, 0, 661, 141)
+        self.widgetScroll.setGeometry(0, 0, 1000, 141)
         self.widgetScroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
 
         self.widget = QWidget(self.widgetScroll)
