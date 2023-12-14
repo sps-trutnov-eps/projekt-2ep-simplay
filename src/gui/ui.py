@@ -13,6 +13,7 @@ class Ui_MainWindow(object):
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
         self.EncodingManager = EncodingManager()
+        self.currentCategory = 0
 
         password_file = ""
         with open("data/password.txt", 'r', encoding="utf-8") as f:
@@ -46,10 +47,11 @@ class Ui_MainWindow(object):
 
 
         self.HomeView.setupUi(self.MainWindow)
+        self.HomeView.tabWidget_2.setCurrentIndex(self.currentCategory)
 
         games_menu = QMenu()
         for game in game_manager.getGames():
-            category = category_manager.getCategoryByUUID(self.HomeView.tabWidget_2.currentIndex() + 1)
+            category = category_manager.getCategoryByUUID(self.currentCategory + 1)
 
             games_menu.addAction(game.getName(), lambda current_game=game: self.addGameToCategory(current_game, category))
             
@@ -58,6 +60,7 @@ class Ui_MainWindow(object):
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
+        self.HomeView.tabWidget_2.currentChanged.connect(self.changeCurrentCategory)
         #self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
 
     def setupLockedScreenView(self) -> None:
@@ -143,7 +146,6 @@ class Ui_MainWindow(object):
 
     def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
         for category in category_manager.getCategories():
-            print(category.getGames())
             categoryWidget = QWidget()
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
@@ -216,6 +218,9 @@ class Ui_MainWindow(object):
         return False
     
     def addGameToCategory(self, game: Game, category: Category):
-        print(category.getUUID())
         category.addGame(game)
+        self.setupHomeView()
+
+    def changeCurrentCategory(self):
+        self.currentCategory = self.HomeView.tabWidget_2.currentIndex()
         self.setupHomeView()
