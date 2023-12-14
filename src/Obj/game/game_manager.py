@@ -54,7 +54,7 @@ class GameManager:
         if (len(self.games) > 0):
             if (len(self.games) == 1):
                 return 1
-            return len(self.games) - 1
+            return len(self.games)
         return 0
 
 
