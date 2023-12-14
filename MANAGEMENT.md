@@ -7,5 +7,5 @@
 
 ## Lukáš
 1. Měření odehraného času
-2. Defaultní hry
-3. Vytváření složek
+2. Defaultní hry ✅
+3. Vytváření složek ✅
