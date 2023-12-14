@@ -204,7 +204,7 @@ class HomeView(object):
         
         self.widgetScroll = QScrollArea(self.gameBox)
         self.widgetScroll.setGeometry(0, 0, 1000, 141)
-        self.widgetScroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.widgetScroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
 
         self.widget = QWidget(self.widgetScroll)
         self.widget.setObjectName(u"widget")
@@ -242,7 +242,7 @@ class HomeView(object):
         self.addCtgrBtn.setObjectName(u"addCtgrBtn")
         self.addCtgrBtn.setMinimumSize(QSize(150, 30))
         self.addCtgrBtn.setMaximumSize(QSize(150, 30))
-        self.addCtgrBtn.setGeometry(280, 10, 170, 30)
+        self.addCtgrBtn.setGeometry(580, 10, 170, 30)
         self.addCtgrBtn.setFont(font1)
         self.addCtgrBtn.setIcon(icon6)
         self.addCtgrBtn.setIconSize(QSize(24, 24))
@@ -252,7 +252,7 @@ class HomeView(object):
 
         self.rmvCtgrBtn = QPushButton(self.ctgrInfo)
         self.rmvCtgrBtn.setObjectName(u"rmvCtgrBtn")
-        self.rmvCtgrBtn.setGeometry(QRect(480, 10, 170, 30))
+        self.rmvCtgrBtn.setGeometry(QRect(785, 10, 170, 30))
         self.rmvCtgrBtn.setCursor(QCursor(Qt.PointingHandCursor))
 
         sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
@@ -274,7 +274,7 @@ class HomeView(object):
         self.ctgrBox.setObjectName(u"ctgrBox")
         self.tabWidget_2 = QTabWidget(self.ctgrBox)
         self.tabWidget_2.setObjectName(u"tabWidget_2")
-        self.tabWidget_2.setGeometry(QRect(0, 0, 661, 141))
+        self.tabWidget_2.setGeometry(QRect(0, 0, 1000, 170))
         
         for category in self.categories:
              self.tabWidget_2.addTab(self.categories[category], category)

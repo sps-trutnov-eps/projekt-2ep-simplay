@@ -149,7 +149,10 @@ class Ui_MainWindow(object):
 
     def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
         for category in category_manager.getCategories():
-            categoryWidget = QWidget()
+            widgetScroll = QScrollArea()
+            widgetScroll.setGeometry(0, 0, 1000, 141)
+            widgetScroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+            categoryWidget = QWidget(widgetScroll)
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
             for game in category.getGames():
@@ -193,8 +196,9 @@ class Ui_MainWindow(object):
                 categoryWidgetLayout.addWidget(gameWidget)
             # Game
 
+            widgetScroll.setWidget(categoryWidget)
 
-            self.HomeView.categories[category.getName()] = categoryWidget
+            self.HomeView.categories[category.getName()] = widgetScroll
 
 
 
