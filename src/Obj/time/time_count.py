@@ -1,15 +1,24 @@
 import time
 
-class TimeCount():  
+class TimeCount:
+
     def __init__(self):
-        self.f = open('time.txt','r')
+        self.start_time = time.time()
+        self.current_time = 0
+        self.played_time = 0
+        with open("data/time.txt", "r") as f:
+            self.played_time = f.read()
 
-    def time(self):
-        file = self.f.readlines()
-        last = int(file[0])
 
-        #time = 
-        self.f.close()
-        file = open('time.txt', 'w')
-        file.write(str(time))
-        file.close()  
+    def end(self) -> None:
+        self.current_time = time.time()
+        self.played_time = int(self.current_time) - int(self.start_time) + int(self.played_time)
+        print(self.played_time)
+
+        with open("data/time.txt", "w") as f:
+            f.write(str(self.played_time))
+
+    @staticmethod
+    def getPlayedTime() -> int:
+        with open("data/time.txt", "r") as f:
+            return round(int(f.read()) / 3600, 2)

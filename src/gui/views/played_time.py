@@ -3,6 +3,7 @@ from qtpy.QtGui import *
 from qtpy.QtWidgets import *
 
 from gui.components import NavigationBar
+from obj.time import TimeCount
 
 
 class PlayedTimeView(object):
@@ -52,7 +53,13 @@ class PlayedTimeView(object):
         self.label.setFont(font2)
         self.label.setStyleSheet(u"color: #F5F5F5;")
         self.label.setAlignment(Qt.AlignCenter)
-
+        self.pushButton = QPushButton(self.mainContainer)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMaximumSize(QSize(100, 16777215))
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setStyleSheet(u"margin: 10 0 0 0; height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
+        
+        self.horizontalLayout_3.addWidget(self.pushButton)
         self.horizontalLayout_3.addWidget(self.label)
 
 
@@ -75,6 +82,7 @@ class PlayedTimeView(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.pageTitle.setText(QCoreApplication.translate("MainWindow", u"Odehran\u00fd \u010das", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"P\u0159ipravuje se...", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", str(TimeCount.getPlayedTime()) + " hodin", None))
+        self.pushButton.setText("Zpět")
     # retranslateUi
 

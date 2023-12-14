@@ -59,6 +59,7 @@ class Ui_MainWindow(object):
         
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
+        self.HomeView.timeBtn.clicked.connect(self.setupPlayedTimeView)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
         self.HomeView.tabWidget_2.currentChanged.connect(self.changeCurrentCategory)
         #self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
@@ -82,6 +83,8 @@ class Ui_MainWindow(object):
     def setupPlayedTimeView(self) -> None:
         self.PlayedTimeView = PlayedTimeView()
         self.PlayedTimeView.setupUi(self.MainWindow)
+
+        self.PlayedTimeView.pushButton.clicked.connect(self.setupHomeView)
 
     
     def addGame(self, game_manager) -> None:

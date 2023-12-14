@@ -96,17 +96,8 @@ class HomeView(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.menuBtn = QPushButton(self.frame)
-        self.menuBtn.setObjectName(u"menuBtn")
         font = QFont()
         font.setPointSize(15)
-        self.menuBtn.setFont(font)
-        icon1 = QIcon()
-        icon1.addFile(u"assets/icons/menu.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.menuBtn.setIcon(icon1)
-        self.menuBtn.setIconSize(QSize(24, 24))
-
-        self.horizontalLayout_2.addWidget(self.menuBtn, 0, Qt.AlignLeft)
 
 
         self.verticalLayout_2.addWidget(self.frame, 0, Qt.AlignTop)
@@ -312,10 +303,6 @@ class HomeView(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-#if QT_CONFIG(tooltip)
-        self.menuBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Menu", None))
-#endif // QT_CONFIG(tooltip)
-        self.menuBtn.setText("")
 #if QT_CONFIG(tooltip)
         self.timeBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Zobrazit odehraný čas", None))
 #endif // QT_CONFIG(tooltip)

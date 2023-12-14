@@ -2,6 +2,7 @@ import sys
 from Custom_Widgets import *
 
 from gui.main_window import MainWindow
+from obj.time import TimeCount
 
 
 app = QApplication(sys.argv)
@@ -11,4 +12,6 @@ app.setOrganizationDomain("https://spstrutnov.cz/")
 
 window = MainWindow()
 
+time_count = TimeCount()
 app.exec_()
+time_count.end()
