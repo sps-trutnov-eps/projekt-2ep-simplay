@@ -54,7 +54,7 @@ class CategoryManager:
         if (len(self.categories) > 0):
             if (len(self.categories) == 1):
                 return 1
-            return len(self.categories) - 1
+            return len(self.categories)
         return 0
 
 
