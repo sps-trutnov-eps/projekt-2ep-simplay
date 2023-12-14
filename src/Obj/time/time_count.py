@@ -13,7 +13,6 @@ class TimeCount:
     def end(self) -> None:
         self.current_time = time.time()
         self.played_time = int(self.current_time) - int(self.start_time) + int(self.played_time)
-        print(self.played_time)
 
         with open("data/time.txt", "w") as f:
             f.write(str(self.played_time))
