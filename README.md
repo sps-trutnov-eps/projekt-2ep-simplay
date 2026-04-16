@@ -68,11 +68,4 @@ Pro následné spuštění hry stačí kliknout na tlačítko spustit u dané hr
 
 ## Autoři
 - Tomáš Klose
-     - Zabezpečení přístupu
-     - Přidávání her
-     - Spouštění her
-
 - Lukáš Hajnyš
-     - Měření odehraného času
-     - Defaultní hry
-     - Vytváření kategorií
