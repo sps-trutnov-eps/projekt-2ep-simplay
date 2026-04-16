@@ -1,5 +1,5 @@
 import sys
-from Custom_Widgets import *
+from qtpy.QtWidgets import QApplication
 
 from gui.main_window import MainWindow
 from obj.time import TimeCount
