@@ -1,4 +1,5 @@
-from Custom_Widgets import *
+from qtpy.QtWidgets import QMainWindow
+from qtpy.QtCore import Qt, QPoint
 
 from gui.ui import Ui_MainWindow
 
@@ -6,14 +7,24 @@ from gui.ui import Ui_MainWindow
 class MainWindow(QMainWindow):
     
     def __init__(self) -> None:
-        QMainWindow.__init__(self)
+        super().__init__()
         self.ui = Ui_MainWindow(self)
 
-        loadJsonStyle(self, self.ui, jsonFiles = {
-            "gui/style.json"
-        })
+        # Frameless window logic
+        self.setWindowFlags(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+
+        # Dragging support
+        self._drag_pos = QPoint()
 
         self.show()
 
-        #self.insert.clicked.connect(self.insertTab)
-        #self.remove.clicked.connect(self.removeTab)
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self._drag_pos = event.globalPos() - self.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.LeftButton:
+            self.move(event.globalPos() - self._drag_pos)
+            event.accept()
