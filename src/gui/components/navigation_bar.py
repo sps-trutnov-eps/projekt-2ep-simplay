@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from qtpy.QtWidgets import *
+from qtpy.QtCore import *
+from qtpy.QtGui import *
 
 
 class NavigationBar(QWidget):
@@ -9,6 +9,7 @@ class NavigationBar(QWidget):
         super(NavigationBar, self).__init__()
         self.parent_layout = parent_layout
         self.MainWindow = MainWindow
+        self._drag_pos = QPoint()
 
 
         self.verticalLayout = QVBoxLayout(self)
@@ -83,6 +84,16 @@ class NavigationBar(QWidget):
         self.restoreButton.clicked.connect(lambda: self.restore_or_maximize_window())
         self.closeButton.clicked.connect(lambda: self.MainWindow.close())
     # retranslateUi
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self._drag_pos = event.globalPos() - self.MainWindow.frameGeometry().topLeft()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.LeftButton:
+            self.MainWindow.move(event.globalPos() - self._drag_pos)
+            event.accept()
 
     def updateRestoreButtonIcon(self):
         if self.MainWindow.isMaximized():

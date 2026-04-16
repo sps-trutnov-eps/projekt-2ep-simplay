@@ -1,5 +1,6 @@
-from Custom_Widgets.Widgets import *
+from qtpy.QtWidgets import *
 from qtpy.QtCore import *
+from qtpy.QtGui import *
 import os
 
 from gui.views import *
