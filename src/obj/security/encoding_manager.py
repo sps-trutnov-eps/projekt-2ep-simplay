@@ -1,6 +1,11 @@
 class EncodingManager:
+    """
+    Manažer šifrování využívající vlastní substituční tabulku (znakovou mapu).
+    Zajišťuje převod hesla do nečitelné podoby a jeho následné dešifrování.
+    """
 
     def __init__(self) -> None:
+        # Mapa znaků pro substituci (vlastní algoritmus)
         self.algorithm = {
             'a': ',', 'á': '?', 'b': '<', 'c': '.', 'č': ':', 'd': '>', 'ď': '║', 'e': '_', 'ě': '*',
             'é': 'ů', 'f': '"', 'g': '$', 'h': '§', 'i': '!', 'í': 'ß', 'j': '¨', 'k': '¤', 'l': 'ú',
@@ -12,10 +17,11 @@ class EncodingManager:
 
 
     def encrypt(self, text: str) -> str:
+        """Zašifruje vstupní text pomocí substituční mapy."""
         cypher = ''
         for letter in text:
             if (letter.isupper()):
-                add = '-'
+                add = '-' # Označení pro velké písmeno
             else:
                 add = ''
 
@@ -24,6 +30,7 @@ class EncodingManager:
         return cypher
 
     def encryptList(self, list: list[str]) -> list:
+        """Pomocná metoda pro zašifrování celého seznamu řetězců."""
         encryptedList = []
         for item in list:
             encryptedList.append(self.encrypt(item))
@@ -31,16 +38,18 @@ class EncodingManager:
         return encryptedList
 
     def decrypt(self, cypher: str) -> str:
+        """Převede zašifrovaný řetězec zpět na čitelný text."""
         text = ''
         upper = False
         for symbol in cypher:
             if (symbol == '-'):
                 upper = True
                 continue
-            
+
             if (symbol == '\n'):
                 break
 
+            # Vyhledání klíče (původního znaku) podle hodnoty (šifry) v mapě
             letter = list(self.algorithm.keys())[list(self.algorithm.values()).index(symbol)]
 
             if (upper):
@@ -48,5 +57,5 @@ class EncodingManager:
                 upper = False
 
             text += letter
-        
+
         return text

@@ -5,8 +5,11 @@ from qtpy.QtWidgets import *
 from gui.components import NavigationBar
 from obj.time import TimeCount
 
-
 class PlayedTimeView(object):
+    """
+    Definuje vizuální strukturu obrazovky s odehraným časem.
+    Zobrazuje celkový počet hodin strávených v aplikaci.
+    """
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")

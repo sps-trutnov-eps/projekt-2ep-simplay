@@ -4,6 +4,10 @@ from obj.category import Category
 from obj.game import *
 
 class CategoryManager:
+    """
+    Správce kategorií, který organizuje hry do skupin.
+    Umožňuje načítání a ukládání struktury kategorií v XML (data/categories.xml).
+    """
 
     def __init__(self, game_manager: GameManager) -> None:
         self.game_manager = game_manager
@@ -17,7 +21,8 @@ class CategoryManager:
         self.loadCategories()
 
 
-    def loadCategories(self) -> None:        
+    def loadCategories(self) -> None:
+        """Načte kategorie a přiřadí k nim příslušné objekty her."""
         for child in self.xml_root:
             uuid, name, games = "", "" , []
 
@@ -33,24 +38,28 @@ class CategoryManager:
             self.categories.append(category)
 
     def getCategories(self) -> list[Category]:
+        """Vrátí seznam všech načtených kategorií."""
         return self.categories
 
     def getCategoryByUUID(self, uuid: int) -> Category:
+        """Vyhledá kategorii podle UUID."""
         for category in self.categories:
             if (int(category.getUUID()) == int(uuid)):
                 return category
 
     def addCategory(self, name: str) -> None:
-        uuid = str(self.getLastUUID() + 1)                                                                              # Creating UUID
+        """Vytvoří novou kategorii a uloží ji do XML."""
+        uuid = str(self.getLastUUID() + 1)
 
         self.xml_root.append(self.__createCategoryXML(uuid, name, []))
         self.save()
 
-        category = Category(uuid, name)                                                                                   # Adding changes to active list
+        category = Category(uuid, name)
         self.categories.append(category)
 
 
-    def getLastUUID(self) -> int:                                                                                       # Getting last uuid        
+    def getLastUUID(self) -> int:
+        """Získá ID pro novou kategorii na základě počtu stávajících."""
         if (len(self.categories) > 0):
             if (len(self.categories) == 1):
                 return 1
@@ -58,11 +67,13 @@ class CategoryManager:
         return 0
 
 
-    def save(self) -> None:                                                    # Adding changes to the file
+    def save(self) -> None:
+        """Uloží aktuální stav XML stromu do souboru."""
         with open("data/categories.xml", "wb") as f:
             f.write(etree.tostring(self.xml_root, xml_declaration=True, encoding="UTF-8", pretty_print=True))
 
-    def __createCategoryXML(self, uuid: str, name: str, games: list[Game]) -> etree.Element:                                        # Creating new XML for game record
+    def __createCategoryXML(self, uuid: str, name: str, games: list[Game]) -> etree.Element:
+        """Vytvoří XML strukturu pro novou kategorii."""
         xml_category = etree.SubElement(self.xml_root, "category")
         xml_category.set("uuid", uuid)
         
