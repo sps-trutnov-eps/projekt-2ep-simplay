@@ -11,7 +11,7 @@ Simplay je funkční herní launcher vytvořený v Pythonu, který slouží k ce
 
 ## 🛠 Technologický Stack
 - **Jazyk:** Python 3.x
-- **GUI:** PyQt5 / QtPy (Framework pro moderní desktopová rozhraní)
+- **GUI:** PyQt5 / QtPy
 - **Data:** XML (lxml) pro perzistentní ukládání her a kategorií
 - **Zabezpečení:** Vlastní algoritmus pro kódování citlivých dat
 
