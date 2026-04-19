@@ -30,11 +30,9 @@ class Game:
         Spustí hru na základě přípony souboru.
         Podporuje .exe (přímé spuštění) a .py (spuštění přes interpret Pythonu).
         """
-        extension = os.path.basename(self.path)
-        # Získání přípony souboru
-        parts = extension.split('.')
-        if len(parts) > 1:
-            extension = parts[1].lower()
+        # Získání přípony souboru pomocí standardní knihovny
+        _, extension = os.path.splitext(self.path)
+        extension = extension.lower().lstrip('.')
         
         if extension == "exe":
             os.startfile(self.path)
