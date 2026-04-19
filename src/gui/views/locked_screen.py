@@ -4,8 +4,11 @@ from qtpy.QtGui import *
 
 from gui.components import NavigationBar
 
-
 class LockedScreenView(object):
+    """
+    Definuje vizuální strukturu uzamčené obrazovky (Login Screen).
+    Zobrazuje se při spuštění aplikace, pokud je nastaveno heslo.
+    """
     
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
@@ -18,6 +21,7 @@ class LockedScreenView(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         
+        # Horní navigační lišta
         self.navigationBar = NavigationBar(MainWindow, self.verticalLayout)
 
         self.label = QLabel(self.centralwidget)
@@ -36,6 +40,7 @@ class LockedScreenView(object):
 
         self.verticalLayout.addItem(self.verticalSpacer_2)
 
+        # Hlavní kontejner pro vstupní pole
         self.mainContainer = QWidget(self.centralwidget)
         self.mainContainer.setObjectName(u"mainContainer")
         self.mainContainer.setMinimumSize(QSize(500, 300))
@@ -54,6 +59,7 @@ class LockedScreenView(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_4)
 
+        # Pole pro zadání hesla
         self.lineEdit = QLineEdit(self.widget)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setMinimumSize(QSize(0, 35))
@@ -66,6 +72,8 @@ class LockedScreenView(object):
         self.submitContainer.setObjectName(u"submitContainer")
         self.horizontalLayout_4 = QHBoxLayout(self.submitContainer)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        
+        # Tlačítko pro odeslání/přihlášení
         self.pushButton = QPushButton(self.submitContainer)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMaximumSize(QSize(100, 16777215))
@@ -103,7 +111,8 @@ class LockedScreenView(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        """Nastavení textů v uživatelském rozhraní."""
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Simplay - Uzamčeno", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Pro vstup zadejte heslo", None))
         self.lineEdit.setText("")
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Přihlásit se", None))

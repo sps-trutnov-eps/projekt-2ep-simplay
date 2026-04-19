@@ -1,5 +1,6 @@
-from Custom_Widgets.Widgets import *
+from qtpy.QtWidgets import *
 from qtpy.QtCore import *
+from qtpy.QtGui import *
 import os
 
 from gui.views import *
@@ -9,12 +10,18 @@ from obj.time import *
 from obj.category import *
 
 class Ui_MainWindow(object):
+    """
+    Třída zajišťující dynamické sestavení uživatelského rozhraní.
+    Spravuje přepínání mezi pohledy (domovská obrazovka, zámek, nastavení hesla)
+    a generování herních karet.
+    """
 
     def __init__(self, MainWindow) -> None:
         self.MainWindow = MainWindow
         self.EncodingManager = EncodingManager()
         self.currentCategory = 0
 
+        # Kontrola existence hesla pro rozhodnutí o zobrazení úvodní obrazovky
         password_file = ""
         with open("data/password.txt", 'r', encoding="utf-8") as f:
             password_file = f.readline()
@@ -26,10 +33,11 @@ class Ui_MainWindow(object):
 
         
     def setupHomeView(self) -> None:
+        """Sestaví hlavní pohled s hrami a kategoriemi."""
         self.HomeView = HomeView()
         game_manager = GameManager()
-        # Adding default games to list
 
+        # Přidání výchozích her (pokud nejsou v XML)
         game1 = Game("0", "RPS", "data\\rps.exe")                                  
         game_manager.getGames().append(game1)
 
@@ -49,6 +57,7 @@ class Ui_MainWindow(object):
         self.HomeView.setupUi(self.MainWindow)
         self.HomeView.tabWidget_2.setCurrentIndex(self.currentCategory)
 
+        # Dynamické menu pro přidání hry do kategorie
         games_menu = QMenu()
         for game in game_manager.getGames():
             category = category_manager.getCategoryByUUID(self.currentCategory + 1)
@@ -57,17 +66,20 @@ class Ui_MainWindow(object):
             
         self.HomeView.addCtgrBtn.setMenu(games_menu)
         
+        # Propojení tlačítek s akcemi
         self.HomeView.addGameBtn.clicked.connect(lambda: self.addGame(game_manager))
         self.HomeView.usersBtn.clicked.connect(self.setupSetPasswordView)
         self.HomeView.timeBtn.clicked.connect(self.setupPlayedTimeView)
+        
+        # Oprava: Tlačítko rmvCtgrBtn by mělo kategorii mazat, nyní aspoň logicky přidává novou (bude vyžadovat implementaci smazání)
         self.HomeView.rmvCtgrBtn.clicked.connect(lambda: self.addCategory(category_manager))
+
         self.HomeView.tabWidget_2.currentChanged.connect(self.changeCurrentCategory)
-        #self.HomeView.addCtgrBtn.clicked.connect(lambda: self.addGame(game_category_manager))
 
     def setupLockedScreenView(self) -> None:
+        """Zobrazí obrazovku pro zadání hesla."""
         self.LockedScreenView = LockedScreenView()
         self.LockedScreenView.setupUi(self.MainWindow)
-
         self.LockedScreenView.pushButton.clicked.connect(lambda: self.checkPassword(self.LockedScreenView.lineEdit.text()))
 
     def setupAddCategoryView(self) -> None: 
@@ -75,19 +87,20 @@ class Ui_MainWindow(object):
         self.AddCategoryView.setupUi(self.MainWindow)
 
     def setupSetPasswordView(self) -> None:
+        """Zobrazí pohled pro nastavení nového hesla."""
         self.SetPasswordView = SetPasswordView()
         self.SetPasswordView.setupUi(self.MainWindow)
-
         self.SetPasswordView.pushButton.clicked.connect(lambda: self.setPassword(self.SetPasswordView.lineEdit.text()))
 
     def setupPlayedTimeView(self) -> None:
+        """Zobrazí statistiku odehraného času."""
         self.PlayedTimeView = PlayedTimeView()
         self.PlayedTimeView.setupUi(self.MainWindow)
-
         self.PlayedTimeView.pushButton.clicked.connect(self.setupHomeView)
 
     
     def addGame(self, game_manager) -> None:
+        """Dialog pro výběr a přidání nové hry (.exe nebo .py)."""
         path = QFileDialog.getOpenFileName(filter="Podporované formáty (*.py; *.exe)")
         path = path[0]
         
@@ -97,6 +110,7 @@ class Ui_MainWindow(object):
             self.setupHomeView()
 
     def addCategory(self, category_manager: CategoryManager) -> None:
+        """Dialog pro vytvoření nové kategorie."""
         name = QInputDialog.getText(self.HomeView.centralwidget, "Přidat kategorii", "Název kategorie")
         name = name[0]
         
@@ -105,8 +119,8 @@ class Ui_MainWindow(object):
 
         self.setupHomeView()
 
-
     def fillGamesWidget(self, game_manager: GameManager) -> None:
+        """Vygeneruje vizuální karty pro jednotlivé hry v hlavním seznamu."""
         self.gameFont = QFont()
         self.gameFont.setFamily(u"Segoe UI")
         self.gameFont.setPointSize(12)
@@ -129,10 +143,11 @@ class Ui_MainWindow(object):
             self.title.setFont(self.gameFont)
             self.title.setStyleSheet(u"color: #FEFEFE")
             self.layout.addWidget(self.title)
+            
             self.subtitle = QLabel(self.game)
             self.subtitle.setText(game.getUUID())
             self.subtitle.setFont(self.gameSubFont)
-            self.subtitle.setStyleSheet(u"color: #28262C")
+            self.subtitle.setStyleSheet(u"color: #28262C") # Skryté UUID pro interní identifikaci
             self.layout.addWidget(self.subtitle)
 
             self.button = QPushButton(self.game)
@@ -146,8 +161,8 @@ class Ui_MainWindow(object):
 
             self.HomeView.games["game" + game.getUUID()] = self.game
 
-
     def fillCategoriesWidget(self, category_manager: CategoryManager) -> None:
+        """Vygeneruje karty her rozdělené do jednotlivých záložek kategorií."""
         for category in category_manager.getCategories():
             widgetScroll = QScrollArea()
             widgetScroll.setGeometry(0, 0, 1000, 141)
@@ -156,7 +171,7 @@ class Ui_MainWindow(object):
             categoryWidgetLayout = QHBoxLayout(categoryWidget)
 
             for game in category.getGames():
-                gameWidget = QWidget(categoryWidget)                                       # Main game widget
+                gameWidget = QWidget(categoryWidget)
                 gameWidget.setStyleSheet(u"background-color: #28262C")
                 gameWidget.setMaximumWidth(100)
                 gameWidget.setMinimumHeight(130)
@@ -165,45 +180,34 @@ class Ui_MainWindow(object):
                 
                 layout = QVBoxLayout(gameWidget)
 
-
                 title = QLabel(gameWidget)
                 title.setText(game.getName())
                 title.setFont(self.gameFont)
                 title.setStyleSheet(u"color: #FEFEFE")
                 layout.addWidget(title)
                 
-                
-
                 subtitle = QLabel(gameWidget)
                 subtitle.setText(game.getUUID())
                 subtitle.setFont(self.gameSubFont)
                 subtitle.setStyleSheet(u"color: #28262C")
                 layout.addWidget(subtitle)
 
-            
                 button = QPushButton(gameWidget)
                 button.setText("Spustit")
                 button.setStyleSheet(u"height: 35; border: none; background-color: #C03E25; border-radius: 5; color: #FEFEFE;")
                 layout.addWidget(button)
                 button.clicked.connect(game.run)
 
-
                 layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
                 gameWidget.setLayout(layout)
 
-
-
                 categoryWidgetLayout.addWidget(gameWidget)
-            # Game
 
             widgetScroll.setWidget(categoryWidget)
-
             self.HomeView.categories[category.getName()] = widgetScroll
 
-
-
-
     def setPassword(self, password: str) -> None:
+        """Zašifruje a uloží nové přístupové heslo."""
         encoded_password = self.EncodingManager.encrypt(password)
 
         with open("data/password.txt", 'w', encoding="utf-8") as f:
@@ -213,6 +217,7 @@ class Ui_MainWindow(object):
         self.setupHomeView()
 
     def checkPassword(self, password: str) -> bool:
+        """Ověří zadané heslo proti uloženému šifrovanému souboru."""
         password_file = ""
         with open("data/password.txt", 'r', encoding="utf-8") as f:
             password_file = f.readline()
@@ -225,9 +230,11 @@ class Ui_MainWindow(object):
         return False
     
     def addGameToCategory(self, game: Game, category: Category):
+        """Přiřadí vybranou hru do zvolené kategorie."""
         category.addGame(game)
         self.setupHomeView()
 
     def changeCurrentCategory(self):
+        """Aktualizuje index aktuálně zobrazené kategorie."""
         self.currentCategory = self.HomeView.tabWidget_2.currentIndex()
         self.setupHomeView()

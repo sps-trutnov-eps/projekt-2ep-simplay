@@ -4,8 +4,11 @@ from qtpy.QtWidgets import *
 
 from gui.components import NavigationBar
 
-
 class SetPasswordView(object):
+    """
+    Definuje vizuální strukturu obrazovky pro nastavení přístupového hesla.
+    Obsahuje vstupní pole pro heslo a potvrzovací tlačítko.
+    """
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")

@@ -4,8 +4,11 @@ from qtpy.QtGui import *
 
 from gui.components import NavigationBar
 
-
 class AddCategoryView(object):
+    """
+    Definuje vizuální strukturu obrazovky pro vytvoření nové kategorie.
+    Obsahuje vstupní pole pro název nové kategorie a potvrzovací tlačítko.
+    """
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -19,6 +22,7 @@ class AddCategoryView(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
 
+        # Horní navigační lišta
         self.navigationBar = NavigationBar(MainWindow, self.verticalLayout)
 
         self.pageTitle = QLabel(self.centralwidget)
@@ -47,6 +51,7 @@ class AddCategoryView(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
+        # Kontejner formuláře pro zadání názvu
         self.formContainer = QWidget(self.mainContainer)
         self.formContainer.setObjectName(u"formContainer")
         self.formContainer.setMinimumSize(QSize(0, 0))
@@ -57,6 +62,7 @@ class AddCategoryView(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer_3)
 
+        # Pole pro zadání názvu kategorie
         self.nameEdit = QLineEdit(self.formContainer)
         self.nameEdit.setObjectName(u"nameEdit")
         self.nameEdit.setMinimumSize(QSize(0, 35))
@@ -69,6 +75,8 @@ class AddCategoryView(object):
         self.submitContainer.setObjectName(u"submitContainer")
         self.horizontalLayout_4 = QHBoxLayout(self.submitContainer)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        
+        # Tlačítko pro vytvoření
         self.pushButton = QPushButton(self.submitContainer)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMaximumSize(QSize(100, 16777215))
@@ -109,6 +117,7 @@ class AddCategoryView(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
+        """Nastavení textů v uživatelském rozhraní."""
         self.pageTitle.setText(QCoreApplication.translate("MainWindow", u"Vytvo\u0159it kategorii", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Vytvo\u0159it", None))
     # retranslateUi
